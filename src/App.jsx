@@ -3,6 +3,7 @@ import './App.css'
 import { ContentProducts } from './components/ContentProducts'
 import { Landing } from './components/Landing'
 import Footer from './components/Footer'
+import { SearchProduct } from './modales/SearchProduct'
 
 export const App = () => {
 

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -16,15 +16,33 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import AllInboxIcon from '@mui/icons-material/AllInbox';
 import Grid from '@mui/material/Grid';
+import Modal from '@mui/material/Modal';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import { SearchProduct } from '../modales/SearchProduct';
 
 export const AppbarComponent = () => {
-  const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const toggleDrawer = (open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
     setDrawerOpen(open);
+  };
+
+  const handleSearchOpen = () => {
+    setSearchOpen(true);
+  };
+
+  const handleSearchClose = () => {
+    setSearchOpen(false);
+  };
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
   };
 
   const menuItems = [
@@ -82,7 +100,7 @@ export const AppbarComponent = () => {
                     component="a"
                     href="#"
                     sx={{
-                      fontSize: { xs: 10, md: 25,  },
+                      fontSize: { xs: 10, md: 25 },
                       fontFamily: 'monospace',
                       fontWeight: 700,
                       letterSpacing: { xs: '.1rem', md: '.3rem' },
@@ -96,7 +114,7 @@ export const AppbarComponent = () => {
               </Grid>
               <Grid item>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <IconButton size="small" aria-label="search" color="inherit" sx={{ ml: 0.5 }}>
+                  <IconButton size="small" aria-label="search" color="inherit" sx={{ ml: 0.5 }} onClick={handleSearchOpen}>
                     <SearchIcon />
                   </IconButton>
                   <IconButton size="small" aria-label="show 4 new mails" color="inherit" sx={{ ml: 0.5 }}>
@@ -117,6 +135,40 @@ export const AppbarComponent = () => {
       >
         {list()}
       </Drawer>
+      <Modal
+        open={searchOpen}
+        onClose={handleSearchClose}
+        aria-labelledby="search-modal-title"
+        aria-describedby="search-modal-description"
+        sx={{
+            bgcolor: 'rgba(255, 255, 255, 1)', // Fondo semi-transparente
+            backdropFilter: 'blur(10px)', // Efecto de difuminado
+        }}
+      >
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            borderRadius: 2,
+            width: '100%',
+            height: {sx: '90%', sm: 580 },
+            maxWidth: 700,
+            maxHeight: '100vh',
+            overflow: 'auto',
+            background: 'transparent',
+            boxShadow: 24,
+            p: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 1,
+          }}
+        >
+         <SearchProduct/>
+        </Box>
+      </Modal>
     </>
   );
 };
+
