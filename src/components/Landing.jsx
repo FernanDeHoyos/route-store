@@ -27,6 +27,8 @@ export const Landing = () => {
             padding: '10px',
             width: { xs: '90%', md: '90%' },
             fontSize: { xs: '1.5rem', md: '3rem' },
+            fontFamily: 'Arial, Beiruti',
+            fontWeight: '300',
           }}
         >
           Welcome to Route 66 Store

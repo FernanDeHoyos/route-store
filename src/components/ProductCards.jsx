@@ -4,11 +4,15 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import CardActionArea from '@mui/material/CardActionArea';
 import Typography from '@mui/material/Typography';
+import { useShopStore } from '../hooks/useShopStore';
+import { Grid } from '@mui/material';
 
-export const ProductCards = ({ product, inModal }) => {
+export const ProductCards = ({ product, onProductClick, inModal }) => {
+    
+  const {SetActiveProduct} = useShopStore()
   const handleImageClick = () => {
-    // Lógica para redirigir a otra página
-    window.location.href = `/product/${product.id}`;
+    SetActiveProduct(product)
+    onProductClick(product);
   };
 
   return (
@@ -47,12 +51,36 @@ export const ProductCards = ({ product, inModal }) => {
         justifyContent: 'space-evenly',
         alignItems: 'center',
       }}>
-        <Typography gutterBottom variant="p" component="div">
+        <Typography gutterBottom variant="p" component="div" sx={{
+              fontFamily: 'Arial, Beiruti',
+                fontSize: '0.85rem', 
+                fontWeight: '300',
+            }}>
           {product.name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Grid item sx={{
+        display: 'flex', 
+        flexDirection: inModal ? 'column' : 'row', 
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+      }}>
+        <Typography variant="body2" color="text.secondary" sx={{
+              fontFamily: 'Arial, Beiruti',
+                fontSize: '0.85rem', 
+                fontWeight: '300',
+                pr: 3,
+                textDecoration: 'line-through' 
+            }}>
           ${`${product.price}`}
         </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{
+              fontFamily: 'Arial, Beiruti',
+                fontSize: '0.85rem', 
+                fontWeight: '300',
+            }}>
+          ${`${product.price}`}
+        </Typography>
+        </Grid>
       </CardContent>
     </Card>
   );
