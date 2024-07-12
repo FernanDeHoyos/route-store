@@ -7,7 +7,9 @@ import Footer from './components/Footer'
 export const App = () => {
 
   return (
-    <Grid container>
+    <Grid container sx={{
+      background: '#fcfeff'
+    }}>
    <Grid item xs={12} >
     <Landing/>
    </Grid> 

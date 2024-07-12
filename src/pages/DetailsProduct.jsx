@@ -11,11 +11,16 @@ import { Divider } from '@mui/material';
 import { ProductInformation } from '../components/DetailsComponents/ProductInformation';
 import { PurchasesReturns } from '../components/DetailsComponents/PurchasesReturns';
 import Footer from '../components/Footer';
+import { centeredFlex } from '../styles/Styles';
+import { ModalCart } from '../modales/ModalCart';
 
 export const DetailsProduct = () => {
   const { activeProduct } = useSelector((state) => state.shop);
-  const { SetActiveProduct } = useShopStore();
+  const { SetActiveProduct, SetAddCart } = useShopStore();
   const [selectedColor, setSelectedColor] = useState('');
+  const [modal, setModal] = useState(false);
+  const [productAdd, setProductAdd] = useState('')
+  const [isDisabled, setIsDisabled] = useState(false);
   const [selectedSize, setSelectedSize] = useState('');
 
   useEffect(() => {
@@ -25,6 +30,18 @@ export const DetailsProduct = () => {
     }
   }, []);
 
+  const [anchorEl, setAnchorEl] = useState(null)
+
+
+    const handleOpen = (event) => {
+        setAnchorEl(event.currentTarget)
+    }
+
+    const handleClose = () => {
+        setAnchorEl(null)
+    }
+
+
   const handleColorClick = (color) => {
     setSelectedColor(color);
   };
@@ -33,13 +50,33 @@ export const DetailsProduct = () => {
     setSelectedSize(size);
   };
 
+  const handleAddCart = (event) => {
+    const productDetails = {
+      id: activeProduct.id,
+      name: activeProduct.name,
+      price: activeProduct.price,
+      image: activeProduct.image,
+      selectedColor,
+      selectedSize,
+    };
+    SetAddCart(productDetails)
+    setIsDisabled(true)
+    setProductAdd(productDetails)
+    setModal(true)
+    setAnchorEl(event.currentTarget)
+    console.log('Selected Product Details:', productDetails);
+  };
+
+  const handleOnCloseModal = () =>{
+      setModal(false)
+  }
+
   if (!activeProduct) {
     return <Typography variant="h6">Product not found</Typography>;
   }
 
   return (
-    <Grid container spacing={4} sx={{ padding: 4, pt: 15,
-      }}>
+    <Grid container spacing={4} sx={{ padding: 4, pt: 15, background: '#fcfeff' }}>
       <Grid item xs={12} md={3} >
         <Typography variant="subtitle2" color="textSecondary">
           Latest Drops
@@ -67,19 +104,14 @@ export const DetailsProduct = () => {
         sx={{
           pt: 10,
           height: 500,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
+          ...centeredFlex,
           width: '100%'
         }}
       >
         <Card
           elevation={0}
           sx={{
-            backgroundColor: 'transparent',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
+            ...centeredFlex,
             height: '100%',
             width: '100%',
             flexDirection: 'column', border: '0.5px solid #cccccc',
@@ -101,14 +133,11 @@ export const DetailsProduct = () => {
       </Grid>
       <Grid item xs={12} md={3}>
         <Card elevation={0} sx={{ backgroundColor: 'transparent', 
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center', }}>
+       ...centeredFlex, }}>
           <CardContent>
-            <Typography variant="h6" sx={{ fontWeight: '300', 
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center', }}>
+            <Typography variant="h6" sx={{ 
+              fontWeight: '300', 
+               }}>
               Select Color
             </Typography>
             <div>
@@ -122,6 +151,7 @@ export const DetailsProduct = () => {
                     marginRight: 1,
                     marginBottom: 1,
                     background: '#f8fcff',
+                    fontFamily: 'Arial, Beiruti',
                     fontSize: '0.75rem',
                     fontWeight: '300',
                     color: 'black',
@@ -136,7 +166,7 @@ export const DetailsProduct = () => {
               ))}
             </div>
             <Divider sx={{ pt: 3 }} />
-            <Typography variant="h6" sx={{ marginTop: 2, fontWeight: '300' }}>
+            <Typography variant="h6" sx={{ marginTop: 2,fontWeight: '300' }}>
               Select Size
             </Typography>
             <div>
@@ -169,8 +199,9 @@ export const DetailsProduct = () => {
             </Typography>
             <Button 
               variant="contained" 
-              disabled={!selectedColor || !selectedSize}
+              disabled={!selectedColor || !selectedSize || isDisabled}
               fullWidth 
+              onClick={handleAddCart}
               sx={{
                 marginRight: 1,
                 marginBottom: 1,
@@ -187,6 +218,8 @@ export const DetailsProduct = () => {
             >
               Select variant
             </Button>
+            <ModalCart  anchorEl={anchorEl} handleClose={handleClose} handleOpen={handleOpen} product={productAdd}/>
+
           </CardContent>
         </Card>
       </Grid>

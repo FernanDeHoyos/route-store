@@ -4,10 +4,13 @@ import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
 import { ProductCards } from '../components/ProductCards'; 
 import { products } from '../data/data';
+import { useNavigate } from 'react-router-dom';
 
 
 
-export const SearchProduct = () => {
+export const SearchProduct = ({onClose}) => {
+  const navigate = useNavigate();
+
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearchChange = (event) => {
@@ -17,6 +20,12 @@ export const SearchProduct = () => {
   const filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase())
   ).slice(0, 3);
+
+  const handleProductClick = (product) => {
+    console.log(product);
+    navigate(`/product/${product.id}`);
+    onClose(); 
+  };
 
   return (
     <Container>
@@ -62,7 +71,7 @@ export const SearchProduct = () => {
             md={4}
             lg={4}
           >
-            <ProductCards product={product} inModal />
+            <ProductCards product={product} inModal onProductClick={handleProductClick} />
           </Grid>
         ))}
       </Grid>

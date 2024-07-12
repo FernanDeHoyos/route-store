@@ -1,6 +1,7 @@
 export const products = [
   {
     id: 1,
+    type: 'Camisetas',
     name: 'Vintage Jacket',
     description: 'Classic vintage jacket with a modern twist',
     price: 300,
@@ -11,6 +12,7 @@ export const products = [
   },
   {
     id: 2,
+    type: 'Calzado',
     name: 'Leather Boots',
     description: 'Durable and stylish leather boots',
     price: 120,
@@ -21,6 +23,7 @@ export const products = [
   },
   {
     id: 3,
+    type: 'Jeans',
     name: 'Denim Jeans',
     description: 'Comfortable and trendy denim jeans',
     price: 80,
@@ -31,6 +34,7 @@ export const products = [
   },
   {
     id: 4,
+    type: 'Camisetas',
     name: 'Graphic T-Shirt',
     description: 'Cool graphic tee for casual wear',
     price: 25,
@@ -41,6 +45,7 @@ export const products = [
   },
   {
     id: 5,
+    type: 'Camisetas',
     name: 'Wool Sweater',
     description: 'Warm and cozy wool sweater',
     price: 60,
@@ -51,6 +56,7 @@ export const products = [
   },
   {
     id: 6,
+    type: 'Camisetas',
     name: 'Leather Belt',
     description: 'High-quality leather belt',
     price: 40,
@@ -61,6 +67,7 @@ export const products = [
   },
   {
     id: 7,
+    type: 'Accesorios',
     name: 'Canvas Backpack',
     description: 'Spacious and sturdy canvas backpack',
     price: 90,
@@ -71,6 +78,7 @@ export const products = [
   },
   {
     id: 8,
+    type: 'Calzado',
     name: 'Running Shoes',
     description: 'Lightweight and comfortable running shoes',
     price: 70,
@@ -81,6 +89,7 @@ export const products = [
   },
   {
     id: 9,
+    type: 'Accesorios',
     name: 'Sports Watch',
     description: 'Durable and functional sports watch',
     price: 150,
@@ -91,6 +100,7 @@ export const products = [
   },
   {
     id: 10,
+    type: 'Accesorios',
     name: 'Sunglasses',
     description: 'Stylish and protective sunglasses',
     price: 45,
@@ -101,6 +111,7 @@ export const products = [
   },
   {
     id: 11,
+    type: 'Accesorios',
     name: 'Baseball Cap',
     description: 'Classic baseball cap for everyday wear',
     price: 20,
@@ -111,6 +122,7 @@ export const products = [
   },
   {
     id: 12,
+    type: 'Accesorios',
     name: 'Wristband',
     description: 'Comfortable and durable wristband',
     price: 15,
@@ -121,6 +133,7 @@ export const products = [
   },
   {
     id: 13,
+    type: 'Accesorios',
     name: 'Winter Gloves',
     description: 'Warm and cozy winter gloves',
     price: 30,
@@ -131,6 +144,7 @@ export const products = [
   },
   {
     id: 14,
+    type: 'Accesorios',
     name: 'Leather Wallet',
     description: 'Premium leather wallet with multiple compartments',
     price: 55,
@@ -141,6 +155,7 @@ export const products = [
   },
   {
     id: 15,
+    type: 'Accesorios',
     name: 'Water Bottle',
     description: 'Reusable and eco-friendly water bottle',
     price: 25,
@@ -151,6 +166,7 @@ export const products = [
   },
   {
     id: 16,
+    type: 'Accesorios',
     name: 'Yoga Mat',
     description: 'Comfortable and non-slip yoga mat',
     price: 40,
@@ -161,6 +177,7 @@ export const products = [
   },
   {
     id: 17,
+    type: 'Accesorios',
     name: 'Fitness Tracker',
     description: 'Advanced fitness tracker with multiple features',
     price: 100,
@@ -171,6 +188,7 @@ export const products = [
   },
   {
     id: 18,
+    type: 'Accesorios',
     name: 'Bluetooth Headphones',
     description: 'Wireless and high-quality Bluetooth headphones',
     price: 80,
@@ -181,6 +199,7 @@ export const products = [
   },
   {
     id: 19,
+    type: 'Accesorios',
     name: 'Travel Mug',
     description: 'Insulated and spill-proof travel mug',
     price: 30,
@@ -191,6 +210,7 @@ export const products = [
   },
   {
     id: 20,
+    type: 'Accesorios',
     name: 'Portable Charger',
     description: 'Compact and powerful portable charger',
     price: 50,

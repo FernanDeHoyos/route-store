@@ -2,19 +2,20 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import { centeredFlex } from '../styles/Styles';
 
 export const Landing = () => {
   return (
     <Box
       sx={{
         width: '100%',
-        height: { xs: '300px', md: '500px' },
-        backgroundImage: 'url(/logo.jpg)',
+        marginTop: 10,
+        height: { xs: '300px', md: '600px' },
+        backgroundImage: 'url(/landing.jpg)',
         backgroundSize: 'cover',
+        overflowY: 'clip',
         backgroundPosition: 'center',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        ...centeredFlex
       }}
     >
       <Container>
