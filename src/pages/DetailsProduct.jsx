@@ -76,6 +76,7 @@ export const DetailsProduct = () => {
   }
 
   return (
+    <>
     <Grid container spacing={4} sx={{ padding: 4, pt: 15, background: '#fcfeff' }}>
       <Grid item xs={12} md={3} >
         <Typography variant="subtitle2" color="textSecondary">
@@ -223,9 +224,11 @@ export const DetailsProduct = () => {
           </CardContent>
         </Card>
       </Grid>
-      <Grid item xs={12}>
-        <Footer />
-      </Grid>
     </Grid>
+    <Grid item xs={12}>
+    <Footer />
+  </Grid>
+    </>
+
   );
 };

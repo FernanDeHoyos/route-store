@@ -48,6 +48,7 @@ export const DetailsCart = () => {
     
 
     return (
+        <>
         <Grid container spacing={4} sx={{ padding: 4, pt: 15, background: '#fcfeff' }}>
             <Grid item xs={12} md={8}>
                 <Typography variant="h4" component="h1" gutterBottom>
@@ -205,8 +206,9 @@ export const DetailsCart = () => {
                     </Button>
                 </Card>
             </Grid>
-            <Footer />
         </Grid>
+            <Footer />
+        </>
     );
 };
 

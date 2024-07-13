@@ -31,7 +31,7 @@ export const SearchProduct = ({onClose}) => {
     <Container>
       <TextField
       fullWidth
-      label="Buscar productos"
+      placeholder='Buscar producto'
       variant="outlined"
       value={searchTerm}
       onChange={handleSearchChange}
@@ -40,20 +40,19 @@ export const SearchProduct = ({onClose}) => {
         bgcolor: 'rgba(255, 255, 255, 0.8)', // Fondo más blanco y semi-transparente
         borderRadius: 2,
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', // Sombra para destacar el campo de texto
-        '& .MuiOutlinedInput-root': {
+        
           '& fieldset': {
             borderColor: 'rgba(0, 0, 0, 0.2)', // Color de borde semi-transparente
           },
-          '&:hover fieldset': {
+          '&:hover': {
             borderColor: 'rgba(0, 0, 0, 0.3)', // Color de borde al hacer hover
           },
-          '&.Mui-focused fieldset': {
+          '&.Mui-focused ': {
             borderColor: 'rgba(0, 0, 0, 0.5)', // Color de borde al estar enfocado
-          },
+            bgcolor: '#f8fcff'
         },
-        '& .MuiInputLabel-root': {
-          color: 'rgba(0, 0, 0, 0.5)', // Color del label
-        },
+        
+        
       }}
     />
       <Grid container spacing={4}>

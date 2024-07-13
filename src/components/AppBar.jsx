@@ -198,7 +198,6 @@ export const AppbarComponent = () => {
         aria-labelledby="search-modal-title"
         aria-describedby="search-modal-description"
         sx={{
-          bgcolor: 'rgba(255, 255, 255, 1)', // Fondo semi-transparente
           backdropFilter: 'blur(10px)', // Efecto de difuminado
         }}
       >

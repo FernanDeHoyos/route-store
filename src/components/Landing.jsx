@@ -10,6 +10,7 @@ export const Landing = () => {
       sx={{
         width: '100%',
         marginTop: 10,
+        p:0,
         height: { xs: '300px', md: '600px' },
         backgroundImage: 'url(/landing.jpg)',
         backgroundSize: 'cover',

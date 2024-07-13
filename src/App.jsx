@@ -10,9 +10,9 @@ export const App = () => {
     <Grid container sx={{
       background: '#fcfeff'
     }}>
-   <Grid item xs={12} >
+  
     <Landing/>
-   </Grid> 
+   
    <Grid item xs={12} sx={{padding:3}}>
     <ContentProducts/>
    </Grid>

@@ -71,14 +71,14 @@ export const ProductCards = ({ product, onProductClick, inModal }) => {
                 pr: 3,
                 textDecoration: 'line-through' 
             }}>
-          ${`${product.price}`}
+          Antes ${`${product.price}`}
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{
               fontFamily: 'Arial, Beiruti',
                 fontSize: '0.85rem', 
                 fontWeight: '300',
             }}>
-          ${`${product.price}`}
+          Ahora ${`${product.price}`}
         </Typography>
         </Grid>
       </CardContent>
