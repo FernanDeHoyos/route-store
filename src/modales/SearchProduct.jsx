@@ -28,7 +28,7 @@ export const SearchProduct = ({onClose}) => {
   };
 
   return (
-    <Container>
+    <Container sx={{mt:10}}>
       <TextField
       fullWidth
       placeholder='Buscar producto'
