@@ -7,6 +7,7 @@ import { useShopStore } from '../hooks/useShopStore';
 
 export const DatesShoping = () => {
 
+    const {onSaveShopping} = useShopStore()
     const { formState, onInputChange } = useForm({
         firstName: '',
         lastName: '',
@@ -39,6 +40,7 @@ export const DatesShoping = () => {
         const dataShop = Object(formState)
         const array = [formState, storedProduct]
         console.log(array);
+        onSaveShopping(array)
     }
 
     return (
