@@ -80,6 +80,9 @@ export const AppbarComponent = () => {
       case 'Carrito':
         navigate('/cart')
         break;
+      case 'Inicio':
+        navigate('/')
+        break;
       // Otros casos según necesites
       default:
         break;
@@ -89,7 +92,7 @@ export const AppbarComponent = () => {
 
 
   const menuItems = [
-    { text: 'Todos los productos', icon: <AllInboxIcon /> },
+    { text: 'Inicio', icon: <AllInboxIcon /> },
     { text: 'Buscar', icon: <SearchIcon /> },
     { text: 'Carrito', icon: <ShoppingCartIcon /> },
   ];

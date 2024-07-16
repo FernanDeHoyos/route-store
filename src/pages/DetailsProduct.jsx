@@ -51,21 +51,38 @@ export const DetailsProduct = () => {
   };
 
   const handleAddCart = (event) => {
+    const productsFromStorage = JSON.parse(localStorage.getItem('productsCart')) || [];
     const productDetails = {
-      id: activeProduct.id,
-      name: activeProduct.name,
-      price: activeProduct.price,
-      image: activeProduct.image,
-      selectedColor,
-      selectedSize,
+        id: activeProduct.id,
+        name: activeProduct.name,
+        price: activeProduct.price,
+        image: activeProduct.image,
+        quantity: 1,
+        selectedColor,
+        selectedSize,
     };
-    SetAddCart(productDetails)
-    setIsDisabled(true)
-    setProductAdd(productDetails)
-    setModal(true)
-    setAnchorEl(event.currentTarget)
-    console.log('Selected Product Details:', productDetails);
-  };
+
+    // Verificar si el producto ya está en el carrito
+    const productExists = productsFromStorage.some(product => 
+        product.id === productDetails.id && 
+        product.selectedColor === productDetails.selectedColor && 
+        product.selectedSize === productDetails.selectedSize
+    );
+
+    if (!productExists) {
+        // Si el producto no está en el carrito, agregarlo
+        SetAddCart(productDetails);
+        setIsDisabled(true);
+        setProductAdd(productDetails);
+        setModal(true);
+        setAnchorEl(event.currentTarget);
+        console.log('Selected Product Details:', productDetails);
+    } else {
+        // Si el producto ya está en el carrito, mostrar un mensaje o manejar la lógica correspondiente
+        console.log('Product already in cart');
+    }
+};
+
 
   const handleOnCloseModal = () =>{
       setModal(false)

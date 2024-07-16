@@ -189,15 +189,16 @@ export const DetailsCart = () => {
                     <Button variant="contained" 
                         color="primary"
                         onClick={handleShop} 
-                        fullWidth sx={{
-                        marginRight: 1,
-                        marginBottom: 1,
-                        background: '#000',
-                        fontSize: '0.75rem',
-                        fontWeight: '300',
-                        color: 'white',
-                        borderColor: '#cccccc',
-                        '&:hover': {
+                        fullWidth 
+                        sx={{
+                            marginRight: 1,
+                            marginBottom: 1,
+                            background: '#000',
+                            fontSize: '0.75rem',
+                            fontWeight: '300',
+                            color: 'white',
+                            borderColor: '#cccccc',
+                            '&:hover': {
                             borderColor: '#cccccc',
                             background: '#3C1C0C',
                         },
