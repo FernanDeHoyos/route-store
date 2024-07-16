@@ -22,7 +22,7 @@ export const PurchasesReturns = () => {
             fontFamily: 'Helvetica, Arial, Beiruti', 
             fontWeight: 'bold',
             fontSize: '0.75rem' }}>
-            Shipping & Returns
+            Compras y devoluciones
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
@@ -32,28 +32,26 @@ export const PurchasesReturns = () => {
                 fontFamily: 'Arial, Beiruti', 
                 fontWeight: 'bold',
                 fontSize: '0.75rem' }}>
-                Fast delivery:
+                Entrega rápida:
               </Typography>
               <Typography sx={{ 
                 fontFamily: 'Arial, Beiruti',
                 fontSize: '0.75rem', 
                 fontWeight: '300', }}>
-                Your package will arrive in 3-5 business days at your pick-up location or in the comfort of your home.
-              </Typography>
+Tu paquete llegará en 3-5 días hábiles a tu punto de recogida o en la comodidad de tu hogar.              </Typography>
             </Grid>
             <Grid item xs={12}>
               <Typography sx={{ 
                 fontFamily: 'Arial, Beiruti', 
                 fontWeight: 'bold',
                 fontSize: '0.75rem' }}>
-                Simple exchanges:
+                Intercambios sencillos:
               </Typography>
               <Typography sx={{ 
                 fontFamily: 'Arial, Beiruti',
                 fontSize: '0.75rem', 
                 fontWeight: '300', }}>
-                Is the fit not quite right? No worries - we'll exchange your product for a new one.
-              </Typography>
+¿El ajuste no es el adecuado? No te preocupes, cambiaremos tu producto por uno nuevo.              </Typography>
             </Grid>
             <Grid item xs={12}>
               <Typography sx={{ 
@@ -61,14 +59,13 @@ export const PurchasesReturns = () => {
                 fontWeight: 'bold',
                 fontSize: '0.75rem', 
                 }}>
-                Easy returns:
+                Devoluciones fáciles
               </Typography>
               <Typography sx={{ 
                 fontFamily: 'Arial, Beiruti', 
                 fontSize: '0.75rem', 
                 fontWeight: '300', }}>
-                Just return your product and we'll refund your money. No questions asked – we'll do our best to make sure your return is hassle-free.
-              </Typography>
+Simplemente devuelve tu producto y te reembolsaremos tu dinero. Sin preguntas - haremos nuestro mejor esfuerzo para que tu devolución sea libre de complicaciones.              </Typography>
             </Grid>
           </Grid>
         </AccordionDetails>

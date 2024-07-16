@@ -6,7 +6,11 @@ export const products = [
     description: 'Classic vintage jacket with a modern twist',
     price: 300,
     salePrice: 250,
-    image: '/logo_.png',
+    images: {
+      Black: '/landing.jpg',
+      Brown: '/logo_.png',
+      Navy: '/logo.jpg'
+    },
     colors: ['Black', 'Brown', 'Navy'],
     sizes: ['S', 'M', 'L', 'XL']
   },
@@ -17,7 +21,10 @@ export const products = [
     description: 'Durable and stylish leather boots',
     price: 120,
     salePrice: 100,
-    image: '/logo_.png',
+    images: {
+      Black: '/logo_.png',
+      Brown: '/logo_.png',
+    },
     colors: ['Black', 'Brown'],
     sizes: ['7', '8', '9', '10', '11']
   },
@@ -28,7 +35,10 @@ export const products = [
     description: 'Comfortable and trendy denim jeans',
     price: 80,
     salePrice: 65,
-    image: '/logo_.png',
+    images: {
+      Brown: '/logo_.png',
+      Blue: '/logo_.png'
+    },
     colors: ['Blue', 'Black'],
     sizes: ['28', '30', '32', '34', '36']
   },
@@ -39,7 +49,11 @@ export const products = [
     description: 'Cool graphic tee for casual wear',
     price: 25,
     salePrice: 20,
-    image: '/logo_.png',
+    images: {
+      White: '/logo_.png',
+      Black: '/logo_.png',
+      Gray: '/logo_.png'
+    },
     colors: ['White', 'Black', 'Gray'],
     sizes: ['S', 'M', 'L', 'XL']
   },
@@ -50,7 +64,11 @@ export const products = [
     description: 'Warm and cozy wool sweater',
     price: 60,
     salePrice: 50,
-    image: '/logo_.png',
+    images: {
+      Gray: '/logo_.png',
+      Blue: '/logo_.png',
+      Green: '/logo_.png'
+    },
     colors: ['Gray', 'Blue', 'Green'],
     sizes: ['S', 'M', 'L', 'XL']
   },
@@ -61,7 +79,10 @@ export const products = [
     description: 'High-quality leather belt',
     price: 40,
     salePrice: 35,
-    image: '/logo_.png',
+    images: {
+      Black: '/logo_.png',
+      Brown: '/logo_.png',
+    },
     colors: ['Black', 'Brown'],
     sizes: ['S', 'M', 'L', 'XL']
   },
@@ -72,7 +93,11 @@ export const products = [
     description: 'Spacious and sturdy canvas backpack',
     price: 90,
     salePrice: 75,
-    image: '/logo_.png',
+    images: {
+      Green: '/logo_.png',
+      Brown: '/logo_.png',
+      Black: '/logo_.png',
+    },
     colors: ['Green', 'Brown', 'Black'],
     sizes: ['One Size']
   },
@@ -83,7 +108,11 @@ export const products = [
     description: 'Lightweight and comfortable running shoes',
     price: 70,
     salePrice: 55,
-    image: '/logo_.png',
+    images: {
+      Black: '/logo_.png',
+      Blue: '/logo_.png',
+      Gray: '/logo_.png',
+    },
     colors: ['Black', 'Blue', 'Gray'],
     sizes: ['7', '8', '9', '10', '11']
   },
@@ -94,7 +123,11 @@ export const products = [
     description: 'Durable and functional sports watch',
     price: 150,
     salePrice: 130,
-    image: '/logo_.png',
+    images: {
+      Black: '/logo_.png',
+      Red: '/logo_.png',
+      Blue: '/logo_.png',
+    },
     colors: ['Black', 'Red', 'Blue'],
     sizes: ['One Size']
   },
@@ -105,7 +138,10 @@ export const products = [
     description: 'Stylish and protective sunglasses',
     price: 45,
     salePrice: 35,
-    image: '/logo_.png',
+    images: {
+      Black: '/logo_.png',
+      Brown: '/logo_.png',
+    },
     colors: ['Black', 'Brown'],
     sizes: ['One Size']
   },
@@ -116,7 +152,11 @@ export const products = [
     description: 'Classic baseball cap for everyday wear',
     price: 20,
     salePrice: 15,
-    image: '/logo_.png',
+    images: {
+      Black: '/logo_.png',
+      Blue: '/logo_.png',
+      Red: '/logo_.png',
+    },
     colors: ['Black', 'Blue', 'Red'],
     sizes: ['One Size']
   },
@@ -127,7 +167,10 @@ export const products = [
     description: 'Comfortable and durable wristband',
     price: 15,
     salePrice: 10,
-    image: '/logo_.png',
+    images: {
+      Black: '/logo_.png',
+      White: '/logo_.png',
+    },
     colors: ['Black', 'White'],
     sizes: ['One Size']
   },
@@ -138,7 +181,10 @@ export const products = [
     description: 'Warm and cozy winter gloves',
     price: 30,
     salePrice: 25,
-    image: '/logo_.png',
+    images: {
+      Black:'/logo_.png',
+      Gray: '/logo_.png',
+    },
     colors: ['Black', 'Gray'],
     sizes: ['S', 'M', 'L', 'XL']
   },
@@ -149,7 +195,10 @@ export const products = [
     description: 'Premium leather wallet with multiple compartments',
     price: 55,
     salePrice: 45,
-    image: '/logo_.png',
+    images: {
+      Black: '/logo_.png',
+      Brown:'/logo_.png',
+    },
     colors: ['Black', 'Brown'],
     sizes: ['One Size']
   },
@@ -160,7 +209,11 @@ export const products = [
     description: 'Reusable and eco-friendly water bottle',
     price: 25,
     salePrice: 20,
-    image: '/logo_.png',
+    images: {
+      Blue: '/logo_.png',
+      Green:'/logo_.png',
+      Gray: '/logo_.png',
+    },
     colors: ['Blue', 'Green', 'Gray'],
     sizes: ['One Size']
   },
@@ -171,7 +224,11 @@ export const products = [
     description: 'Comfortable and non-slip yoga mat',
     price: 40,
     salePrice: 35,
-    image: '/logo_.png',
+    images: {
+      Blue: '/logo_.png',
+      Purple: '/logo_.png',
+      Gray: '/logo_.png',
+    },
     colors: ['Blue', 'Purple', 'Gray'],
     sizes: ['One Size']
   },
@@ -182,7 +239,11 @@ export const products = [
     description: 'Advanced fitness tracker with multiple features',
     price: 100,
     salePrice: 85,
-    image: '/logo_.png',
+    images: {
+      Black: '/logo_.png',
+      Blue: '/logo_.png',
+      Red:'/logo_.png',
+    },
     colors: ['Black', 'Blue', 'Red'],
     sizes: ['One Size']
   },
@@ -193,7 +254,11 @@ export const products = [
     description: 'Wireless and high-quality Bluetooth headphones',
     price: 80,
     salePrice: 65,
-    image: '/logo_.png',
+    images: {
+      Black: '/logo_.png',
+      White: '/logo_.png',
+      Blue: '/logo_.png',
+    },
     colors: ['Black', 'White', 'Blue'],
     sizes: ['One Size']
   },
@@ -204,7 +269,11 @@ export const products = [
     description: 'Insulated and spill-proof travel mug',
     price: 30,
     salePrice: 25,
-    image: '/logo_.png',
+    images: {
+      Black: '/logo_.png',
+      Silver: '/logo_.png',
+      Blue: '/logo_.png',
+    },
     colors: ['Black', 'Silver', 'Blue'],
     sizes: ['One Size']
   },
@@ -215,7 +284,10 @@ export const products = [
     description: 'Compact and powerful portable charger',
     price: 50,
     salePrice: 40,
-    image: '/logo_.png',
+    images: {
+      Black: '/logo_.png',
+      White: '/logo_.png',
+    },
     colors: ['Black', 'White'],
     sizes: ['One Size']
   }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -8,10 +8,13 @@ import { useShopStore } from '../hooks/useShopStore';
 import { Grid } from '@mui/material';
 
 export const ProductCards = ({ product, onProductClick, inModal }) => {
-    
-  const {SetActiveProduct} = useShopStore()
+  const { SetActiveProduct } = useShopStore();
+  
+  // Obtén la primera imagen del objeto 'images' del producto
+  const defaultImage = Object.values(product.images)[0];
+
   const handleImageClick = () => {
-    SetActiveProduct(product)
+    SetActiveProduct(product);
     onProductClick(product);
   };
 
@@ -21,7 +24,7 @@ export const ProductCards = ({ product, onProductClick, inModal }) => {
         maxWidth: { xs: '100%', sm: 500 }, 
         width: '100%', 
         height: inModal ? '15rem' : '30rem', 
-        backgroundColor: inModal ? 'rgba(255, 255, 255, 0.8)':  'rgba(255, 255, 255, 0.8)',
+        backgroundColor: inModal ? 'rgba(255, 255, 255, 0.8)' : 'rgba(255, 255, 255, 0.8)',
         '&:hover': {
           boxShadow: 5
         }
@@ -41,7 +44,7 @@ export const ProductCards = ({ product, onProductClick, inModal }) => {
             backgroundColor: 'transparent',
             cursor: 'pointer',
           }}
-          image={product.image}
+          image={defaultImage}
           alt={product.name}
         />
       </CardActionArea>
@@ -78,7 +81,7 @@ export const ProductCards = ({ product, onProductClick, inModal }) => {
                 fontSize: '0.85rem', 
                 fontWeight: '300',
             }}>
-          Ahora ${`${product.price}`}
+          Ahora ${`${product.salePrice}`}
         </Typography>
         </Grid>
       </CardContent>

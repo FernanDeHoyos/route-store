@@ -23,7 +23,7 @@ export const ProductInformation = ({ product }) => {
             fontFamily: 'Helvetica, Arial, Beiruti', 
             fontWeight: 'bold',
             fontSize: '0.75rem' }}>
-            Product Information
+            Informacion de producto
           </Typography>
           
         </AccordionSummary>
@@ -34,14 +34,14 @@ export const ProductInformation = ({ product }) => {
                 fontFamily: 'Helvetica, Arial, Beiruti', 
                 fontWeight: 'bold',
                 fontSize: '0.75rem'
-              }}><strong>Price:</strong> {product.price}</Typography>
+              }}><strong>Precio normal:</strong> {product.price}</Typography>
             </Grid>
             <Grid item xs={6}>
               <Typography sx={{
                 fontFamily: 'Helvetica, Arial, Beiruti', 
                 fontWeight: 'bold',
                 fontSize: '0.75rem'
-              }}><strong>salePrice:</strong> {product.salePrice}</Typography>
+              }}><strong>precio con descuento:</strong> {product.salePrice}</Typography>
             </Grid>
             <Grid item xs={12}>
               <Typography sx={{
