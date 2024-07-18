@@ -1,13 +1,15 @@
-import { Box, Button, Card, CardMedia, Grid, IconButton, MenuItem, Modal, Paper, Popover, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from '@mui/material';
-import React, { useState } from 'react'
-import DeleteIcon from '@mui/icons-material/Delete';
+import { Button, Card, CardMedia, Grid, IconButton, MenuItem, Modal, Paper, Popover, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from '@mui/material';
 import { centeredFlex } from '../styles/Styles';
-import { useShopStore } from '../hooks/useShopStore';
+import { useNavigate } from 'react-router-dom';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 
 export const ModalCart = ({anchorEl, handleClose, handleOpen, product}) => {
 
-    
+    const navigate = useNavigate()
+    const handleToCart = () => {
+        navigate('/cart')
+    }
 
     const open = Boolean(anchorEl)
 
@@ -36,7 +38,7 @@ export const ModalCart = ({anchorEl, handleClose, handleOpen, product}) => {
                     <Table sx={{width: '100%'}}>
                         <TableHead>
                             <TableRow>
-                                <TableCell color='#cccccc'>Item</TableCell>
+                                <TableCell color='#cccccc'></TableCell>
                                 <TableCell align="right">Price</TableCell>
                             </TableRow>
                         </TableHead>
@@ -97,6 +99,31 @@ export const ModalCart = ({anchorEl, handleClose, handleOpen, product}) => {
                         </TableBody>
                     </Table>
                 </TableContainer>
+                <Grid item sx={{
+                    ...centeredFlex
+                }}>
+                <Button variant="contained" 
+                        color="primary"
+                        onClick={handleToCart} 
+                        IconButton
+                        startIcon={<ShoppingCartIcon/>}
+                        sx={{
+                            marginBottom: 1,
+                            marginTop:1,
+                            width: '90%',
+                            background: '#000',
+                            fontSize: '0.75rem',
+                            fontWeight: '300',
+                            color: 'white',
+                            borderColor: '#cccccc',
+                            '&:hover': {
+                            borderColor: '#cccccc',
+                            background: '#3C1C0C',
+                        },
+                    }}>
+                        Ir al carrito
+                    </Button>
+                </Grid>
                 </Grid>
         </Popover>
     </div>

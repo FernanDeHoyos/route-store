@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Grid, Typography, Button, Card, Divider, IconButton, TextField, MenuItem, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, CardMedia } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+
 import { centeredFlex } from '../styles/Styles';
 import { useShopStore } from '../hooks/useShopStore';
-import { useSelector } from 'react-redux';
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
 
@@ -21,9 +23,11 @@ export const DetailsCart = () => {
         setCartItems(productsFromStorage); // Inicializar cartItems con los productos almacenados
     }, []);
 
-    const handleQuantityChange = (id, newQuantity = 1) => {
+    console.log(storedProduct);
+
+    const handleQuantityChange = (id, color, size, newQuantity = 1) => {
         const updatedProducts = storedProduct.map(item =>
-            item.id === id ? { ...item, quantity: parseInt(newQuantity, 10) || 0 } : item 
+            item.id === id && item.selectedColor === color && item.selectedSize == size ? { ...item, quantity: parseInt(newQuantity, 10) || 0 } : item 
         );
         setStoredProduct(updatedProducts); // Actualizar los productos en el estado
         setCartItems(updatedProducts); 
@@ -33,12 +37,15 @@ export const DetailsCart = () => {
         console.log(ad);
     };
 
-    const removeFromCart = (id) => {
+    const removeFromCart = (id, size, color) => {
         const storedProducts = JSON.parse(localStorage.getItem('productsCart')) || [];
-        const updatedProducts = storedProducts.filter(product => product.id !== id);
+        const updatedProducts = storedProducts.filter(product => product.id !== id 
+            || product.selectedSize !== size 
+            || product.selectedColor !== color);
+            console.log(updatedProducts);
         localStorage.setItem('productsCart', JSON.stringify(updatedProducts));
         setStoredProduct(updatedProducts); 
-        SetRemoveFromCart(updatedProducts)
+        SetRemoveFromCart(updatedProducts) 
     };
 
 
@@ -52,22 +59,22 @@ export const DetailsCart = () => {
         <Grid container spacing={4} sx={{ padding: 4, pt: 15, background: '#fcfeff' }}>
             <Grid item xs={12} md={8}>
                 <Typography variant="h4" component="h1" gutterBottom>
-                    Cart
+                    Carrito
                 </Typography>
                 <TableContainer elevation={0} component={Paper}>
                     <Table>
                         <TableHead>
                             <TableRow>
-                                <TableCell color='#cccccc'>Item</TableCell>
-                                <TableCell color='#cccccc' align="center">Quantity</TableCell>
-                                <TableCell align="right">Price</TableCell>
+                                <TableCell color='#cccccc'>Producto</TableCell>
+                                <TableCell color='#cccccc' align="center">Cantidad</TableCell>
+                                <TableCell align="right">Precio</TableCell>
                                 <TableCell align="right">Total</TableCell>
-                                <TableCell align="center">Action</TableCell>
+                                <TableCell align="center">Accion</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {storedProduct.map((item) => (
-                                <TableRow key={item.id} sx={{
+                                <TableRow key={item.id + item.selectedColor + item.selectedSize} sx={{
                                     '&:hover': {
                                         background: '#f8fcff',
                                     },
@@ -109,8 +116,12 @@ export const DetailsCart = () => {
                                                 ...centeredFlex
                                             }}>
                                                 <Typography variant="p" color="black">{item.name}</Typography>
+                                                
                                                 <Typography variant="body2" color="textSecondary">
-                                                    Variant: {item.variant}
+                                                    Color: {item.selectedColor}
+                                                </Typography>
+                                                <Typography variant="body2" color="textSecondary">
+                                                    Talla: {item.selectedSize}
                                                 </Typography>
                                             </Grid>
                                         </Grid>
@@ -120,7 +131,7 @@ export const DetailsCart = () => {
                                         <TextField
                                             select
                                             value={item.quantity }
-                                            onChange={(e) => handleQuantityChange(item.id, e.target.value || 1)}
+                                            onChange={(e) => handleQuantityChange(item.id, item.selectedColor, item.selectedSize, e.target.value || 1)}
                                             sx={{
                                                 width: '60px',
                                                 fontSize: '0.5rem',
@@ -153,7 +164,7 @@ export const DetailsCart = () => {
                                     <TableCell align="right">${item.price.toFixed(2)}</TableCell>
                                     <TableCell align="right">${(item.price * item.quantity).toFixed(2)}</TableCell>
                                     <TableCell align="center">
-                                        <IconButton aria-label="delete" onClick={() => removeFromCart(item.id)}>
+                                        <IconButton aria-label="delete" onClick={() => removeFromCart(item.id, item.selectedSize, item.selectedColor)}>
                                             <DeleteIcon />
                                         </IconButton>
                                     </TableCell>
@@ -166,21 +177,22 @@ export const DetailsCart = () => {
             <Grid item xs={12} md={4}>
                 <Card elevation={0} sx={{ padding: 2 }}>
                     <Typography variant="h5" gutterBottom>
-                        Summary
+                        Sobre su compra 
                     </Typography>
-                    <Typography variant="body1">
-                        <a href="#">Add gift card or discount code</a>
-                    </Typography>
+                   
+                    <Typography variant="body2" sx={{ pb: 2 }}>
+                         Subtotal <span style={{ float: 'right' }}>${cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}</span>
+                        </Typography>
                     <Divider sx={{ my: 2 }} />
-                    <Typography variant="body2" sx={{ pb: 2 }}>
-                        Subtotal <span style={{ float: 'right' }}>${cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}</span>
+                    {storedProduct.map((product) => (
+                        <Typography key={product.id + product.selectedColor + product.selectedSize} variant="body2" sx={{ pb: 2 }}>
+                        {product.name} - 
+                        {product.selectedSize} - 
+                        {product.selectedColor} x 
+                        {product.quantity} <span style={{ float: 'right' }}>$ {product.price}</span>
                     </Typography>
-                    <Typography variant="body2" sx={{ pb: 2 }}>
-                        Shipping <span style={{ float: 'right' }}>$0.00</span>
-                    </Typography>
-                    <Typography variant="body2">
-                        Taxes <span style={{ float: 'right' }}>$0.00</span>
-                    </Typography>
+                    ))}
+
                     <Divider sx={{ my: 2 }} />
                     <Typography variant="h6">
                         Total <span style={{ float: 'right' }}>${cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}</span>
@@ -190,6 +202,7 @@ export const DetailsCart = () => {
                         color="primary"
                         onClick={handleShop} 
                         fullWidth 
+                        startIcon={<ShoppingCartIcon/>}
                         sx={{
                             marginRight: 1,
                             marginBottom: 1,

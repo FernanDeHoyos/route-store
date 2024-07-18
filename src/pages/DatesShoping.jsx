@@ -5,11 +5,7 @@ import Footer from '../components/Footer';
 import { useForm } from '../hooks/useForm';
 import { useShopStore } from '../hooks/useShopStore';
 import { AlertDialog } from '../modales/AlertDialog';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+
 
 // Tu código existente
 
@@ -17,13 +13,13 @@ export const DatesShoping = () => {
 
     const {onSaveShopping} = useShopStore();
     const { formState, onInputChange } = useForm({
-        firstName: '',
-        lastName: '',
-        phone: '',
-        address: '',
-        city: '',
-        postalCode: '',
-        specificationsAddress: ''
+        Nombre: '',
+        Apellido: '',
+        Celular: '',
+        Direccion: '',
+        Ciudad: '',
+        CodigoPostal: '',
+        Especificaciones_envio: ''
     });
 
     const [storedProduct, setStoredProduct] = useState([]);
@@ -67,12 +63,12 @@ export const DatesShoping = () => {
     };
 
     const sendWhatsAppMessage = (array) => {
-        const { firstName, lastName, phone, address, city, postalCode, specificationsAddress } = array[0];
+        const { Nombre, Apellido, Celular, Direccion, Ciudad, CodigoPostal, Especificaciones_envio } = array[0];
         const products = array[1].map(product => 
             `${product.name} (Color: ${product.selectedColor}, Size: ${product.selectedSize}, Quantity: ${product.quantity})`
         ).join('\n');
 
-        const message = `New Purchase:\n\nCustomer Information:\nName: ${firstName} ${lastName}\nPhone: ${phone}\nAddress: ${address}, ${city}\nPostal Code: ${postalCode}\nSpecifications: ${specificationsAddress}\n\nProducts:\n${products}\n\nTotal Price: $${totalPrice}`;
+        const message = `New Purchase:\n\nCustomer Information:\nName: ${Nombre} ${Apellido}\nPhone: ${Celular}\nAddress: ${Direccion}, ${Ciudad}\nPostal Code: ${CodigoPostal}\nSpecifications: ${Especificaciones_envio}\n\nProducts:\n${products}\n\nTotal Price: $${totalPrice}`;
         const encodedMessage = encodeURIComponent(message);
         const phoneNumber = '3136601690'; // Replace with the recipient's phone number
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
@@ -95,7 +91,7 @@ export const DatesShoping = () => {
             <Grid container spacing={4} sx={{ padding: 4, pt: 15, background: '#f8fcff' }}>
                 <Grid item xs={12} md={8}>
                     <Typography variant="h4" component="h1" gutterBottom>
-                        Address form
+                        Datos para hacer el envio
                     </Typography>
                     <Grid item xs={12} md={12} 
                         sx={{
@@ -148,23 +144,19 @@ export const DatesShoping = () => {
                 <Grid item xs={12} md={4}>
                     <Card elevation={0} sx={{ padding: 2 }}>
                         <Typography variant="h5" gutterBottom>
-                            Summary
+                            Sobre su compra
                         </Typography>
-                        <Typography variant="body1">
-                            <a href="#">Add gift card or discount code</a>
-                        </Typography>
+                        
                         <Divider sx={{ my: 2 }} />
                         <Typography variant="body2" sx={{ pb: 2 }}>
                             Subtotal <span style={{ float: 'right' }}>${totalPrice}</span>
                         </Typography>
                         {storedProduct.map((produc) => (
-                            <Typography variant="body2" key={produc.id}>
+                            <Typography  variant="body2" key={produc.id + produc.selectedColor + produc.selectedSize}>
                                 {produc.name} x {produc.quantity} <span style={{ float: 'right' }}>${produc.price * produc.quantity}</span>
                             </Typography>
                         ))}
-                        <Typography variant="body2">
-                            Taxes <span style={{ float: 'right' }}>$0.00</span>
-                        </Typography>
+                        
                         <Divider sx={{ my: 2 }} />
                         <Typography variant="h6">
                             Total <span style={{ float: 'right' }}>${totalPrice}</span>
@@ -196,7 +188,7 @@ export const DatesShoping = () => {
                             <Table sx={{width: '100%'}}>
                                 <TableBody>
                                     {storedProduct.map((item) => (
-                                        <TableRow key={item.id} sx={{
+                                        <TableRow key={item.id + item.selectedColor + item.selectedSize} sx={{
                                             '&:hover': {
                                                 background: '#f8fcff',
                                             },

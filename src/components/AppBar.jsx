@@ -117,7 +117,7 @@ export const AppbarComponent = () => {
 
   return (
     <>
-      <AppBar position="absolute" color="inherit">
+      <AppBar position="fixed" color="inherit">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Grid container alignItems="center" justifyContent="space-between">

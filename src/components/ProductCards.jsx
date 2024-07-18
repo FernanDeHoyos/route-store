@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -24,65 +24,75 @@ export const ProductCards = ({ product, onProductClick, inModal }) => {
         maxWidth: { xs: '100%', sm: 500 }, 
         width: '100%', 
         height: inModal ? '15rem' : '30rem', 
-        backgroundColor: inModal ? 'rgba(255, 255, 255, 0.8)' : 'rgba(255, 255, 255, 0.8)',
+        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+        borderRadius: 2,
+        boxShadow: 3,
         '&:hover': {
-          boxShadow: 5
-        }
+          boxShadow: 6,
+          transform: 'scale(1.02)',
+          transition: 'transform 0.3s ease-in-out',
+        },
       }}
     >
       <CardActionArea onClick={handleImageClick}
        sx={{
-        height: inModal ? '60%' : '90%', 
+        height: inModal ? '60%' : '70%', 
        }}>
         <CardMedia
           component="img"
           sx={{ 
-            pt: inModal ? 1 : 5, 
-            pb: inModal ? 1 : 5, 
-            height: inModal ? '80%' : '80%', 
+            pt: inModal ? 1 : 2, 
+            pb: inModal ? 1 : 2, 
+            height: '100%', 
             objectFit: 'contain',
             backgroundColor: 'transparent',
             cursor: 'pointer',
+            borderRadius: '8px 8px 0 0',
           }}
           image={defaultImage}
           alt={product.name}
         />
       </CardActionArea>
-      <CardContent sx={{
+      <CardContent  sx={{
         display: 'flex', 
-        flexDirection: inModal ? 'column' : 'row', 
-        justifyContent: 'space-evenly',
+        flexDirection: 'column', 
+        justifyContent: 'center',
+        background: '#0000',
         alignItems: 'center',
+        textAlign: 'center',
+        p: inModal ? 2 : 1,
+        pt: inModal ? 1 : 3,
       }}>
-        <Typography gutterBottom variant="p" component="div" sx={{
-              fontFamily: 'Arial, Beiruti',
-                fontSize: '0.85rem', 
-                fontWeight: '300',
-            }}>
+        <Typography gutterBottom variant="h6" component="div" sx={{
+          fontFamily: 'Arial, sans-serif',
+          fontSize: '1rem', 
+          fontWeight: 'bold',
+        }}>
           {product.name}
         </Typography>
-        <Grid item sx={{
-        display: 'flex', 
-        flexDirection: inModal ? 'column' : 'row', 
-        justifyContent: 'space-evenly',
-        alignItems: 'center',
-      }}>
-        <Typography variant="body2" color="text.secondary" sx={{
-              fontFamily: 'Arial, Beiruti',
-                fontSize: '0.85rem', 
-                fontWeight: '300',
-                pr: 3,
-                textDecoration: 'line-through' 
-            }}>
-          Antes ${`${product.price}`}
-        </Typography>
-        <Typography variant="body2" color="text.secondary" sx={{
-              fontFamily: 'Arial, Beiruti',
-                fontSize: '0.85rem', 
-                fontWeight: '300',
-            }}>
-          Ahora ${`${product.salePrice}`}
-        </Typography>
+        <Grid container sx={{
+          display: 'flex', 
+          flexDirection: 'column', 
+          justifyContent: 'center',
+          alignItems: 'center',
+          mt: inModal ? 0 : 1,
+        }}>
+          <Typography variant="body2" color="text.secondary" sx={{
+            fontFamily: 'Arial, sans-serif',
+            fontSize: '0.85rem', 
+            fontWeight: '300',
+            textDecoration: 'line-through',
+            mb: inModal ? 0 : 1,
+          }}>
+            Antes ${product.price}
+          </Typography>
+          <Typography variant="body1" color="primary" sx={{
+            fontFamily: 'Arial, sans-serif',
+            fontSize: '1rem', 
+            fontWeight: 'bold',
+          }}>
+            Ahora ${product.salePrice}
+          </Typography>
         </Grid>
       </CardContent>
     </Card>
