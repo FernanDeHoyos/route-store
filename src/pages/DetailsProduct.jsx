@@ -104,9 +104,7 @@ export const DetailsProduct = () => {
     <>
       <Grid container spacing={4} sx={{ padding: 4, pt: 15, background: '#fcfeff' }}>
         <Grid item xs={12} md={3} sx={{ ...centeredFlex, flexDirection: 'column' }}>
-          <Typography variant="subtitle2" color="textSecondary">
-            Latest Drops
-          </Typography>
+         
           <Typography variant="h4" component="h1">
             {activeProduct.name}
           </Typography>

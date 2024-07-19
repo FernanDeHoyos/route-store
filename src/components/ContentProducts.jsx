@@ -5,6 +5,8 @@ import { ProductCards } from './ProductCards';
 import { products } from '../data/data';
 import { useNavigate } from 'react-router-dom';
 import { Box, Button } from '@mui/material';
+import GirlIcon from '@mui/icons-material/Girl';
+import ManIcon from '@mui/icons-material/Man';
 
 import allIcon from '/cashback.png';
 import jeansIcon from '/pants.png';
@@ -13,8 +15,8 @@ import shoesIcon from '/sneakers.png';
 import accessoriesIcon from '/watch.png';
 
 const generos = [
-  { value: 'Mujer', label: 'Mujer' },
-  { value: 'Hombre', label: 'Hombre' },
+  { value: 'Mujer', label: 'Mujer', icon: <GirlIcon/> },
+  { value: 'Hombre', label: 'Hombre', icon:  <ManIcon/>},
 ];
 const categories = [
   { value: 'all', label: 'Todos', icon: allIcon },
@@ -75,13 +77,16 @@ export const ContentProducts = ({ inModal }) => {
               key={genero.value}
               onClick={() => handleGeneroChange(genero.value)}
               variant={selectedGenero === genero.value ? 'contained' : 'outlined'}
+              startIcon={genero.icon}
               sx={{
                 display: 'flex',
-                flexDirection: 'column',
                 alignItems: 'center',
                 padding: 2,
-                width: 100,
-                height: 50,
+                width: {xs: 60, sm: 80},
+                height: {xs: 30, sm: 50},
+                fontFamily: 'Arial, Beiruti',
+                fontSize: {xs: '0.60rem', sm: '0.80rem'},
+                fontWeight: '300',
                 textTransform: 'none',
                 backgroundColor: selectedGenero === genero.value ? '#e0f7fa' : 'background.paper',
                 color: selectedGenero === genero.value ? 'primary.main' : 'text.primary',
@@ -104,6 +109,7 @@ export const ContentProducts = ({ inModal }) => {
             justifyContent: 'center',
             flexWrap: 'wrap',
             gap: 2,
+          
           }}
         >
           {categories.map((category) => (
@@ -115,9 +121,9 @@ export const ContentProducts = ({ inModal }) => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                padding: 2,
-                width: 100,
-                height: 110,
+                padding: 1,
+                width: {xs: 50, sm: 100},
+                height: {xs: 50, sm: 110},
                 textTransform: 'none',
                 backgroundColor: selectedCategory === category.value ? '#e0f7fa' : 'background.paper',
                 color: selectedCategory === category.value ? 'primary.main' : 'text.primary',
@@ -126,6 +132,9 @@ export const ContentProducts = ({ inModal }) => {
                   backgroundColor: selectedCategory === category.value ? '#b2ebf2' : '#e0f7fa',
                 },
                 transition: 'background-color 0.3s',
+                fontFamily: 'Arial, Beiruti',
+                fontSize: {xs: '0.60rem', sm: '0.60rem'},
+                fontWeight: '300',
                 boxShadow: selectedCategory === category.value ? '0px 4px 6px rgba(0, 0, 0, 0.1)' : 'none',
               }}
             >
@@ -133,9 +142,9 @@ export const ContentProducts = ({ inModal }) => {
                 src={category.icon}
                 alt={category.label}
                 style={{
-                  width: '60%',
-                  height: '60%',
-                  marginBottom: 8,
+                  width: {sx:'40%', sm: '60%', md:  '60%'},
+                  height: '40%',
+                  marginBottom: 5,
                 }}
               />
               {category.label}

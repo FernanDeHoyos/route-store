@@ -65,16 +65,17 @@ export const DatesShoping = () => {
     const sendWhatsAppMessage = (array) => {
         const { Nombre, Apellido, Celular, Direccion, Ciudad, CodigoPostal, Especificaciones_envio } = array[0];
         const products = array[1].map(product => 
-            `${product.name} (Color: ${product.selectedColor}, Size: ${product.selectedSize}, Quantity: ${product.quantity})`
+            `${product.name} (Color: ${product.selectedColor}, Talla: ${product.selectedSize}, Cantidad: ${product.quantity})`
         ).join('\n');
-
-        const message = `New Purchase:\n\nCustomer Information:\nName: ${Nombre} ${Apellido}\nPhone: ${Celular}\nAddress: ${Direccion}, ${Ciudad}\nPostal Code: ${CodigoPostal}\nSpecifications: ${Especificaciones_envio}\n\nProducts:\n${products}\n\nTotal Price: $${totalPrice}`;
+    
+        const message = `Nueva Compra:\n\nInformación del Cliente:\nNombre: ${Nombre} ${Apellido}\nTeléfono: ${Celular}\nDirección: ${Direccion}, ${Ciudad}\nCódigo Postal: ${CodigoPostal}\nEspecificaciones: ${Especificaciones_envio}\n\nProductos:\n${products}\n\nPrecio Total: $${totalPrice}`;
         const encodedMessage = encodeURIComponent(message);
-        const phoneNumber = '3136601690'; // Replace with the recipient's phone number
+        const phoneNumber = '3136601690'; // Reemplazar con el número de teléfono del destinatario
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
         
         window.open(whatsappUrl, '_blank');
     };
+    
 
     const handleConfirmPurchase = async() => {
         const array = [formState, storedProduct];
@@ -96,8 +97,9 @@ export const DatesShoping = () => {
                     <Grid item xs={12} md={12} 
                         sx={{
                             ...centeredFlex,
+                            justifyContent: 'space-between',
                             flexDirection: 'row',
-                            flexWrap: 'wrap'
+                            flexWrap: 'wrap',
                         }}>
                         {Object.keys(formState).map((key) => {
                             let type = 'text';
@@ -120,7 +122,8 @@ export const DatesShoping = () => {
                                     error={!!errors[key]}
                                     helperText={errors[key] || ''}
                                     sx={{
-                                        width: { xs: '35%', md: '45%' },
+                                        padding: 0,
+                                        width: { xs: '40%', md: '45%' },
                                         m:1,
                                         bgcolor: '#f8fcff',
                                         borderRadius: 2,
@@ -245,9 +248,9 @@ export const DatesShoping = () => {
                 open={openDialog} 
                 handleClose={handleCloseDialog} 
                 handleConfirm={handleConfirmPurchase}
-                phone={formState.phone} 
-                address={formState.address}
-                specifications={formState.specificationsAddress}
+                phone={formState.Celular} 
+                address={formState.Direccion}
+                specifications={formState.Especificaciones_envio}
             />
         </>
     );

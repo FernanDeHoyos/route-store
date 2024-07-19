@@ -18,7 +18,7 @@ export const Landing = () => {
     <Box
       sx={{
         width: '100%',
-        marginTop: {xs: 5, md:5, sm: 10, lg:10},
+        marginTop: {xs: 0, md:5, sm: 10, lg:10},
         p: 0,
         height: { xs: '300px', md: '600px' },
         overflow: 'hidden',
