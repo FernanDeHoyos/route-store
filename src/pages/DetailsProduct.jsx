@@ -134,7 +134,7 @@ export const DetailsProduct = () => {
             <InnerImageZoom
               src={displayedImage}
               zoomSrc={displayedImage}
-              zoomScale={3.5}
+              zoomScale={2}
               alt={activeProduct.name}
               width={400} // Ancho máximo permitido para la imagen dentro de la card
               height={400} // Altura máxima permitida para la imagen dentro de la card

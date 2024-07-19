@@ -81,8 +81,8 @@ export const ContentProducts = ({ inModal }) => {
               sx={{
                 display: 'flex',
                 alignItems: 'center',
-                padding: 2,
-                width: {xs: 60, sm: 80},
+                paddingRight: 2,
+                width: {xs: 80, sm: 80},
                 height: {xs: 30, sm: 50},
                 fontFamily: 'Arial, Beiruti',
                 fontSize: {xs: '0.60rem', sm: '0.80rem'},
@@ -123,7 +123,7 @@ export const ContentProducts = ({ inModal }) => {
                 alignItems: 'center',
                 padding: 1,
                 width: {xs: 50, sm: 100},
-                height: {xs: 50, sm: 110},
+                height: {xs: 50, sm: 100},
                 textTransform: 'none',
                 backgroundColor: selectedCategory === category.value ? '#e0f7fa' : 'background.paper',
                 color: selectedCategory === category.value ? 'primary.main' : 'text.primary',
@@ -133,7 +133,7 @@ export const ContentProducts = ({ inModal }) => {
                 },
                 transition: 'background-color 0.3s',
                 fontFamily: 'Arial, Beiruti',
-                fontSize: {xs: '0.60rem', sm: '0.60rem'},
+                fontSize: {xs: '0.60rem', sm: '0.80rem'},
                 fontWeight: '300',
                 boxShadow: selectedCategory === category.value ? '0px 4px 6px rgba(0, 0, 0, 0.1)' : 'none',
               }}
@@ -142,9 +142,9 @@ export const ContentProducts = ({ inModal }) => {
                 src={category.icon}
                 alt={category.label}
                 style={{
-                  width: {sx:'40%', sm: '60%', md:  '60%'},
-                  height: '40%',
-                  marginBottom: 5,
+                  width: {sx:'60%', sm: '60%', md:  '60%'},
+                  height: '60%',
+                  marginBottom: 1,
                 }}
               />
               {category.label}
