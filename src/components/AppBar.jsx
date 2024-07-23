@@ -1,29 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
+import  { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
+import {AppBar, Box, Toolbar, Badge, IconButton, Typography, Container,Drawer,
+        List,ListItem, ListItemIcon, ListItemText, Grid,Modal} from '@mui/material';
+
 import SearchIcon from '@mui/icons-material/Search';
-import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import AllInboxIcon from '@mui/icons-material/AllInbox';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-import Grid from '@mui/material/Grid';
-import Modal from '@mui/material/Modal';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+
 import { SearchProduct } from '../modales/SearchProduct';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 export const AppbarComponent = () => {
   const navigate = useNavigate()

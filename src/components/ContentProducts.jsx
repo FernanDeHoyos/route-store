@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Box, Button, Container, Grid } from '@mui/material';
+import ManIcon from '@mui/icons-material/Man';
+import GirlIcon from '@mui/icons-material/Girl';
+
 import { ProductCards } from './ProductCards';
 import { products } from '../data/data';
-import { useNavigate } from 'react-router-dom';
-import { Box, Button } from '@mui/material';
-import GirlIcon from '@mui/icons-material/Girl';
-import ManIcon from '@mui/icons-material/Man';
 
 import allIcon from '/cashback.png';
 import jeansIcon from '/pants.png';

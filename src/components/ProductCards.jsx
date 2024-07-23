@@ -1,11 +1,8 @@
 import React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import CardActionArea from '@mui/material/CardActionArea';
-import Typography from '@mui/material/Typography';
-import { useShopStore } from '../hooks/useShopStore';
+import {Card, CardContent, CardMedia, CardActionArea, Typography} from '@mui/material';
 import { Grid, Box } from '@mui/material';
+
+import { useShopStore } from '../hooks/useShopStore';
 
 export const ProductCards = ({ product, onProductClick, inModal }) => {
   const { SetActiveProduct } = useShopStore();

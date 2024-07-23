@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import InnerImageZoom from 'react-inner-image-zoom';
-import 'react-inner-image-zoom/lib/InnerImageZoom/styles.min.css';
-import { useShopStore } from '../hooks/useShopStore';
-import { Alert, Divider } from '@mui/material';
+import {Grid, Typography, Button, Card, CardContent, CardMedia, Divider, Alert} from '@mui/material';
+
 import { ProductInformation } from '../components/DetailsComponents/ProductInformation';
 import { PurchasesReturns } from '../components/DetailsComponents/PurchasesReturns';
+import { useShopStore } from '../hooks/useShopStore';
 import Footer from '../components/Footer';
 import { centeredFlex } from '../styles/Styles';
 import { ModalCart } from '../modales/ModalCart';
+
+import InnerImageZoom from 'react-inner-image-zoom';
+import 'react-inner-image-zoom/lib/InnerImageZoom/styles.min.css';
 
 export const DetailsProduct = () => {
   const { activeProduct } = useSelector((state) => state.shop);

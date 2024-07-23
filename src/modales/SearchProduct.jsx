@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
-import TextField from '@mui/material/TextField';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import {Container, Grid, TextField} from '@mui/material';
+
 import { ProductCards } from '../components/ProductCards'; 
 import { products } from '../data/data';
-import { useNavigate } from 'react-router-dom';
 
 
 

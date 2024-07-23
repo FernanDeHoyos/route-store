@@ -1,7 +1,6 @@
-import React from 'react'
-import { DetailsProduct } from '../pages/DetailsProduct'
 import { Route, Routes } from 'react-router-dom'
 import { App } from '../App'
+import { DetailsProduct } from '../pages/DetailsProduct'
 import { DetailsCart } from '../pages/DetailsCart'
 import { DatesShoping } from '../pages/DatesShoping'
 

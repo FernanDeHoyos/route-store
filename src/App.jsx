@@ -1,8 +1,8 @@
 import { Divider, Grid } from '@mui/material';
-import './App.css';
 import { ContentProducts } from './components/ContentProducts';
 import { Landing } from './components/Landing';
 import Footer from './components/Footer';
+import './App.css';
 
 export const App = () => {
   return (

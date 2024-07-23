@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Grid, Typography, Button, Card, Divider, IconButton, TextField, MenuItem, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, CardMedia } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -7,7 +8,6 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { centeredFlex } from '../styles/Styles';
 import { useShopStore } from '../hooks/useShopStore';
 import Footer from '../components/Footer';
-import { useNavigate } from 'react-router-dom';
 
 export const DetailsCart = () => {
     const { SetRemoveFromCart } = useShopStore();

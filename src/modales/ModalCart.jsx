@@ -1,7 +1,7 @@
-import { Button, Card, CardMedia, Grid, IconButton, MenuItem, Modal, Paper, Popover, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from '@mui/material';
-import { centeredFlex } from '../styles/Styles';
 import { useNavigate } from 'react-router-dom';
+import { Button, Card, CardMedia, Grid, IconButton, MenuItem, Modal, Paper, Popover, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { centeredFlex } from '../styles/Styles';
 
 
 export const ModalCart = ({anchorEl, handleClose, handleOpen, product}) => {

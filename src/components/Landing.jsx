@@ -1,11 +1,8 @@
-import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import CardMedia from '@mui/material/CardMedia';
+import {Box, Container, Typography, CardMedia} from '@mui/material';
+
 import { centeredFlex } from '../styles/Styles';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const images = [
   { src: '/landing.jpg', alt: 'Landing 1' },
