@@ -1,8 +1,10 @@
-import  { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import {AppBar, Box, Toolbar, Badge, IconButton, Typography, Container,Drawer,
-        List,ListItem, ListItemIcon, ListItemText, Grid,Modal} from '@mui/material';
+import {
+  AppBar, Box, Toolbar, Badge, IconButton, Typography, Container, Drawer,
+  List, ListItem, ListItemIcon, ListItemText, Grid, Modal, Button, useMediaQuery
+} from '@mui/material';
 
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -10,12 +12,12 @@ import MenuIcon from '@mui/icons-material/Menu';
 import AllInboxIcon from '@mui/icons-material/AllInbox';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-
 import { SearchProduct } from '../modales/SearchProduct';
 
 export const AppbarComponent = () => {
-  const navigate = useNavigate()
-  const location = useLocation()
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down('md')); // Detect small screens
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -26,19 +28,15 @@ export const AppbarComponent = () => {
   const handleBackClick = () => {
     navigate(-1); // Navega a la página anterior
   };
+
   const updateCartCount = () => {
     const storedProducts = JSON.parse(localStorage.getItem('productsCart')) || [];
     setNumCart(storedProducts.length);
   };
 
   useEffect(() => {
-    updateCartCount()
-    console.log('object');
-  }, [cart])
-
-  useEffect(() => {
-
-  }, []);
+    updateCartCount();
+  }, [cart]);
 
   const toggleDrawer = (open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -59,30 +57,26 @@ export const AppbarComponent = () => {
     setSearchTerm(event.target.value);
   };
 
-
   const handleMenuItemClick = (text) => {
     switch (text) {
       case 'Buscar':
         handleSearchOpen();
         break;
       case 'Carrito':
-        navigate('/cart')
+        navigate('/cart');
         break;
       case 'Inicio':
-        navigate('/')
+        navigate('/');
         break;
-      // Otros casos según necesites
       default:
         break;
     }
     setDrawerOpen(false); // Cierra el drawer después de hacer clic en un elemento
   };
 
-
   const menuItems = [
-    { text: 'Inicio', icon: <AllInboxIcon /> },
-    { text: 'Buscar', icon: <SearchIcon /> },
-    { text: 'Carrito', icon: <ShoppingCartIcon /> },
+    { text: 'Inicio', icon: <AllInboxIcon />, link: '/' },
+    { text: 'Buscar', icon: <SearchIcon />, action: handleSearchOpen },
   ];
 
   const list = () => (
@@ -108,33 +102,51 @@ export const AppbarComponent = () => {
       <AppBar position="fixed" color="inherit">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <Grid container alignItems="center" justifyContent="space-between">
-              <Grid item>
-                <IconButton
-                  edge="start"
-                  color="inherit"
-                  aria-label="menu"
-                  sx={{ mr: 2 }}
-                  onClick={toggleDrawer(true)}
-                >
-                  <MenuIcon />
-                </IconButton>
-                {location.pathname !== '/' && (
-                
-                  <IconButton
-                    edge="start"
-                    color="inherit"
-                    aria-label="go back"
-                    sx={{ mr: 2 }}
-                    onClick={handleBackClick}
-                  >
-                    <ArrowBackIcon />
-                  </IconButton>
-               
-              )}
-
+            <Grid container sx={{ }}>
+              {/* Left Section: Menu, Back button */}
+              <Grid item xs={3} md={4}>
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                  {isSmallScreen ? (
+                    <IconButton
+                      edge="start"
+                      color="inherit"
+                      aria-label="menu"
+                      sx={{ mr: 2 }}
+                      onClick={toggleDrawer(true)}
+                    >
+                      <MenuIcon />
+                    </IconButton>
+                  ) : (
+                    location.pathname !== '/' && (
+                      <IconButton
+                        edge="start"
+                        color="inherit"
+                        aria-label="go back"
+                        sx={{ mr: 2 }}
+                        onClick={handleBackClick}
+                      >
+                        <ArrowBackIcon />
+                      </IconButton>
+                    )
+                  )}
+                  {/* Menu items for larger screens */}
+                  {!isSmallScreen &&
+                    menuItems.map((item) => (
+                      <Button
+                        key={item.text}
+                        startIcon={item.icon}
+                        color="inherit"
+                        onClick={item.action || (() => navigate(item.link))}
+                        sx={{ mx: 1 }}
+                      >
+                        {item.text}
+                      </Button>
+                    ))}
+                </Box>
               </Grid>
-              <Grid item xs>
+
+              {/* Center Section: Logo */}
+              <Grid item xs={6} md={4} sx={{ textAlign: 'center' }}>
                 <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                   <Box
                     component="img"
@@ -148,7 +160,7 @@ export const AppbarComponent = () => {
                     component="a"
                     href="#"
                     sx={{
-                      fontSize: { xs: 10, md: 25 },
+                      fontSize: { xs: 10, md: 15 },
                       fontFamily: 'monospace',
                       fontWeight: 700,
                       letterSpacing: { xs: '.1rem', md: '.3rem' },
@@ -160,12 +172,11 @@ export const AppbarComponent = () => {
                   </Typography>
                 </Box>
               </Grid>
-              <Grid item>
-                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <IconButton size="small" aria-label="search" color="inherit" sx={{ ml: 0.5 }} onClick={handleSearchOpen}>
-                    <SearchIcon />
-                  </IconButton>
-                  <IconButton onClick={() => navigate('/cart')} size="small" aria-label="show 4 new mails" color="inherit" sx={{ ml: 0.5 }}>
+
+              {/* Right Section: Cart */}
+              <Grid item xs={3} md={4} sx={{ textAlign: 'right' }}>
+                <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+                  <IconButton onClick={() => navigate('/cart')} size="small" aria-label="show cart items" color="inherit">
                     <Badge badgeContent={numCart} color="error">
                       <ShoppingCartIcon />
                     </Badge>
@@ -176,20 +187,20 @@ export const AppbarComponent = () => {
           </Toolbar>
         </Container>
       </AppBar>
-      <Drawer
-        anchor="left"
-        open={drawerOpen}
-        onClose={toggleDrawer(false)}
-      >
+
+      {/* Drawer for small screens */}
+      <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
         {list()}
       </Drawer>
+
+      {/* Modal for search */}
       <Modal
         open={searchOpen}
         onClose={handleSearchClose}
         aria-labelledby="search-modal-title"
         aria-describedby="search-modal-description"
         sx={{
-          backdropFilter: 'blur(10px)', // Efecto de difuminado
+          backdropFilter: 'blur(10px)',
         }}
       >
         <Box
@@ -218,4 +229,3 @@ export const AppbarComponent = () => {
     </>
   );
 };
-
