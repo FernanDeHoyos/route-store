@@ -99,7 +99,7 @@ export const AppbarComponent = () => {
 
   return (
     <>
-      <AppBar position="fixed" color="inherit">
+      <AppBar position="fixed" color="inherit" elevation={0} sx={{ boxShadow: 'none',  }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Grid container sx={{ }}>
@@ -111,7 +111,8 @@ export const AppbarComponent = () => {
                       edge="start"
                       color="inherit"
                       aria-label="menu"
-                      sx={{ mr: 2 }}
+                      sx={{ mr: 2, fontSize: '0.75rem',
+                      fontWeight: '300', }}
                       onClick={toggleDrawer(true)}
                     >
                       <MenuIcon />
@@ -134,10 +135,10 @@ export const AppbarComponent = () => {
                     menuItems.map((item) => (
                       <Button
                         key={item.text}
-                        startIcon={item.icon}
                         color="inherit"
                         onClick={item.action || (() => navigate(item.link))}
-                        sx={{ mx: 1 }}
+                        sx={{ mx: 1, fontSize: '0.75rem',
+                        fontWeight: 'bold', }}
                       >
                         {item.text}
                       </Button>
@@ -215,7 +216,7 @@ export const AppbarComponent = () => {
             maxWidth: 700,
             maxHeight: '100vh',
             overflow: 'auto',
-            background: 'transparent',
+            background: '#FFF',
             boxShadow: 24,
             p: 1,
             display: 'flex',

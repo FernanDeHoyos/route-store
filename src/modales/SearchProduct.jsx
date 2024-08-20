@@ -22,7 +22,7 @@ export const SearchProduct = ({onClose}) => {
 
   const handleProductClick = (product) => {
     console.log(product);
-    navigate(`/product/${product.id}`);
+    navigate(`/product/${product.type}/${product.id}`);
     onClose(); 
   };
 
@@ -36,7 +36,7 @@ export const SearchProduct = ({onClose}) => {
       onChange={handleSearchChange}
       sx={{
         marginBottom: 4,
-        bgcolor: 'rgba(255, 255, 255, 0.8)', // Fondo más blanco y semi-transparente
+        bgcolor: 'rgba(255, 255, 255, 1)', // Fondo más blanco y semi-transparente
         borderRadius: 2,
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', // Sombra para destacar el campo de texto
         

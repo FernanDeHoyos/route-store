@@ -70,11 +70,11 @@ export const products = [
     price: 60,
     salePrice: 50,
     images: {
-      Gray: '/logo_.png',
-      Blue: '/logo_.png',
-      Green: '/logo_.png'
+      Black: '/buso.webp',
+      Brown: '/logo_.png',
+      Navy: '/logo.jpg'
     },
-    colors: ['Gray', 'Blue', 'Green'],
+    colors: ['Black', 'Brown', 'Navy'],
     sizes: ['S', 'M', 'L', 'XL']
   },
   {
@@ -86,10 +86,11 @@ export const products = [
     price: 40,
     salePrice: 35,
     images: {
-      Black: '/logo_.png',
+      Black: '/buso.webp',
       Brown: '/logo_.png',
+      Navy: '/logo.jpg'
     },
-    colors: ['Black', 'Brown'],
+    colors: ['Black', 'Brown', 'Navy'],
     sizes: ['S', 'M', 'L', 'XL']
   },
   {
@@ -101,11 +102,10 @@ export const products = [
     price: 90,
     salePrice: 75,
     images: {
-      Green: '/logo_.png',
+      Black: '/watch.webp',
       Brown: '/logo_.png',
-      Black: '/logo_.png',
     },
-    colors: ['Green', 'Brown', 'Black'],
+    colors: ['Black', 'Brown'],
     sizes: ['One Size']
   },
   {
@@ -164,7 +164,7 @@ export const products = [
     price: 20,
     salePrice: 15,
     images: {
-      Black: '/logo_.png',
+      Black: '/watch.webp',
       Blue: '/logo_.png',
       Red: '/logo_.png',
     },
@@ -180,7 +180,7 @@ export const products = [
     price: 15,
     salePrice: 10,
     images: {
-      Black: '/logo_.png',
+      Black: '/watch.webp',
       White: '/logo_.png',
     },
     colors: ['Black', 'White'],
@@ -195,7 +195,7 @@ export const products = [
     price: 30,
     salePrice: 25,
     images: {
-      Black:'/logo_.png',
+      Black:'/watch.webp',
       Gray: '/logo_.png',
     },
     colors: ['Black', 'Gray'],
@@ -210,7 +210,7 @@ export const products = [
     price: 55,
     salePrice: 45,
     images: {
-      Black: '/logo_.png',
+      Black: '/watch.webp',
       Brown:'/logo_.png',
     },
     colors: ['Black', 'Brown'],
@@ -225,7 +225,7 @@ export const products = [
     price: 25,
     salePrice: 20,
     images: {
-      Blue: '/logo_.png',
+      Blue: '/watch.webp',
       Green:'/logo_.png',
       Gray: '/logo_.png',
     },
@@ -241,7 +241,7 @@ export const products = [
     price: 40,
     salePrice: 35,
     images: {
-      Blue: '/logo_.png',
+      Blue: '/watch.webp',
       Purple: '/logo_.png',
       Gray: '/logo_.png',
     },
@@ -257,7 +257,7 @@ export const products = [
     price: 100,
     salePrice: 85,
     images: {
-      Black: '/logo_.png',
+      Black: '/watch.webp',
       Blue: '/logo_.png',
       Red:'/logo_.png',
     },
@@ -273,7 +273,7 @@ export const products = [
     price: 80,
     salePrice: 65,
     images: {
-      Black: '/logo_.png',
+      Black: '/watch.webp',
       White: '/logo_.png',
       Blue: '/logo_.png',
     },
@@ -289,7 +289,7 @@ export const products = [
     price: 30,
     salePrice: 25,
     images: {
-      Black: '/logo_.png',
+      Black: '/watch.webp',
       Silver: '/logo_.png',
       Blue: '/logo_.png',
     },
@@ -305,7 +305,7 @@ export const products = [
     price: 50,
     salePrice: 40,
     images: {
-      Black: '/logo_.png',
+      Black: '/watch.webp',
       White: '/logo_.png',
     },
     colors: ['Black', 'White'],

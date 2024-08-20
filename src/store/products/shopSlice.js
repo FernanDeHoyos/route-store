@@ -5,6 +5,9 @@ export const shopSlice = createSlice({
     initialState: {
         products: [],
         cart: [],
+        categories: ['Camisetas', 'Accesorios', 'Calzado', 'Jeans'], // List of category names
+
+        activeCategory: null,
         activeProduct: null,
         isLoadingProducts: true,
     },
@@ -12,24 +15,15 @@ export const shopSlice = createSlice({
         onSetActiveProduct: (state, { payload }) => {
             state.activeProduct = payload;
         },
-        onAddNewProduct: (state, { payload }) => {
-            state.products.push(payload);
-            state.activeProduct = null;
+
+        onSetActiveCategory: (state, { payload }) => {
+            state.activeCategory = payload; 
+          },
+
+        onLoadCategory: (state, { payload }) => {
+            state.activeCategory = payload;
         },
-        onUpdateProduct: (state, { payload }) => {
-            state.products = state.products.map(product => {
-                if (product.id === payload.id) {
-                    return payload;
-                }
-                return product;
-            });
-        },
-        onDeleteProduct: (state) => {
-            if (state.activeProduct) {
-                state.products = state.products.filter(product => product.id !== state.activeProduct.id);
-                state.activeProduct = null;
-            }
-        },
+        
         onLoadProducts: (state, { payload }) => {
             state.isLoadingProducts = false;
             payload.forEach(product => {
@@ -59,12 +53,11 @@ export const shopSlice = createSlice({
 
 export const { 
     onSetActiveProduct,
-    onAddNewProduct,
-    onUpdateProduct,
-    onDeleteProduct,
     onLoadProducts,
     onAddToCart,
     onRemoveFromCart,
     onClearCart,
-    onLogoutShop 
+    onLogoutShop,
+    onLoadCategory,
+    onSetActiveCategory
 } = shopSlice.actions;

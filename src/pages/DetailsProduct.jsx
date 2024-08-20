@@ -11,6 +11,7 @@ import { ModalCart } from '../modales/ModalCart';
 
 import InnerImageZoom from 'react-inner-image-zoom';
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.min.css';
+import { ContentProducts } from '../components/ContentProducts';
 
 export const DetailsProduct = () => {
   const { activeProduct } = useSelector((state) => state.shop);
@@ -240,9 +241,24 @@ export const DetailsProduct = () => {
           </Card>
         </Grid>
       </Grid>
-      <Grid item xs={12}>
-        <Footer />
+      <Divider sx={{ml: 5, mr: 5}}/>
+      <Grid item xs={12} sx={{...centeredFlex, flexDirection: 'column', pb: 3}}>
+      <Typography
+          variant="h4"
+          color="black"
+          sx={{
+            mt: 2,
+            mb: 2,
+            fontFamily: 'Arial, sans-serif',
+            fontWeight: '200',
+            textTransform: 'uppercase',
+          }}
+        >
+          Productos relacionados
+        </Typography>
+        <ContentProducts/>
       </Grid>
+        <Footer />
     </>
   );
 };

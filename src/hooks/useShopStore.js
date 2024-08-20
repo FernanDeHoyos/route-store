@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { onAddToCart, onRemoveFromCart, onSetActiveProduct } from "../store/products/shopSlice";
+import { onAddToCart, onLoadCategory, onRemoveFromCart, onSetActiveCategory, onSetActiveProduct } from "../store/products/shopSlice";
 import { collection, deleteDoc, doc, setDoc, getDoc, addDoc } from "firebase/firestore/lite";
 import { FirebaseDB } from "../firebase/config";
 
@@ -12,6 +12,11 @@ export const useShopStore = () => {
     const SetActiveProduct = (product) => {
         dispatch(onSetActiveProduct(product))
         localStorage.setItem('activeProduct', JSON.stringify(product));
+    }
+
+    const SetActiveCategory = (product) => {
+        dispatch(onSetActiveCategory(product))
+        localStorage.setItem('activeCategory', product);
     }
 
     const SetAddCart = (product) => {
@@ -71,6 +76,7 @@ export const useShopStore = () => {
         SetActiveProduct,
         SetAddCart,
         SetRemoveFromCart,
-        onSaveShopping
+        onSaveShopping,
+        SetActiveCategory
     }
 }

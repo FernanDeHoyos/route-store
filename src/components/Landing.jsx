@@ -1,25 +1,29 @@
+import { useMediaQuery, useTheme, Box, Container, Typography, CardMedia, Button, Grid } from '@mui/material';
 import { Carousel } from 'react-responsive-carousel';
-import {Box, Container, Typography, CardMedia} from '@mui/material';
-
-import { centeredFlex } from '../styles/Styles';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { centeredFlex } from '../styles/Styles';
 
 const images = [
-  { src: '/landing.jpg', alt: 'Landing 1' },
-  { src: '/landing.jpg', alt: 'Landing 2' },
-  { src: '/landing.jpg', alt: 'Landing 3' },
+  { pcSrc: '/landing.jpg', mobileSrc: '/sueter.png', alt: 'Landing 1' },
+  { pcSrc: '/landing.jpg', mobileSrc: '/sueter.png', alt: 'Landing 2' },
+  { pcSrc: '/landing.jpg', mobileSrc: '/sueter.png', alt: 'Landing 3' },
 ];
 
 export const Landing = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+  const handleCategoryClick = () => {
+    window.location.href = '/category';
+  };
+
   return (
     <Box
+      borderRadius={'30px'}
       sx={{
         width: '100%',
-        marginTop: {xs: 0, md:5, sm: 10, lg:10},
-        p: 0,
-        height: { xs: '300px', md: '600px' },
-        overflow: 'hidden',
-        position: 'relative', // Ensure positioning context for the overlaying text
+        padding: { xs: 2, sm: 2 },
+        height: { xs: '100vh', sm: '100vh' }, 
         ...centeredFlex,
       }}
     >
@@ -34,48 +38,85 @@ export const Landing = () => {
         dynamicHeight={false}
       >
         {images.map((image, index) => (
-          <CardMedia
+          <Box
             key={index}
-            component="img"
-            sx={{ 
-              objectFit: 'cover',
-              height: '100%', 
-              width: '100%', 
-              backgroundColor: 'transparent',
-              cursor: 'pointer',
+            borderRadius={3}
+            sx={{
+              overflow: 'hidden', 
             }}
-            image={image.src}
-            alt={image.alt}
-          />
+          >
+            <CardMedia
+              component="img"
+              sx={{
+                objectFit: 'cover',
+                height: '80vh', 
+                width: '100%',
+                cursor: 'pointer',
+              }}
+              image={isMobile ? image.mobileSrc : image.pcSrc}
+              alt={image.alt}
+            />
+          </Box>
         ))}
       </Carousel>
+
+      {/* Content and Button */}
       <Container
         sx={{
           position: 'absolute',
-          top: '50%',
+          bottom: '10%',
           left: '50%',
-          transform: 'translate(-50%, -50%)',
+          pl: {xs: 3},
+          transform: 'translateX(-50%)',
           zIndex: 1,
-          textAlign: 'center',
-          ...centeredFlex,
-
+          display: 'flex',
+          flexDirection: {xs: 'column', sm:'row'},
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          alignContent: 'center'
         }}
       >
+        <Grid item>
         <Typography
-          variant="h4"
+          variant="h3"
           color="white"
-          align="center"
           sx={{
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
-            padding: '10px',
-            width: { xs: '90%', md: '90%' },
-            fontSize: { xs: '1.5rem', md: '3rem' },
-            fontFamily: 'Arial, Beiruti',
-            fontWeight: '300',
+            mt: 2,
+            fontFamily: 'Arial, sans-serif',
+            fontWeight: '200',
           }}
         >
-          Bienvenido a Route 66 store 
+          Nueva coleccion
         </Typography>
+        <Typography
+          variant="h6"
+          color="white"
+          sx={{
+            mt: 2,
+            fontSize: { xs: '1rem', md: '1.5rem' },
+            fontFamily: 'Arial, sans-serif',
+            fontWeight: '200',
+          }}
+        >
+          Descubre nuestra categoría de camisetas
+        </Typography>
+        </Grid>
+        <Button
+          sx={{ 
+            mt: 2, 
+            alignSelf: 'flex-start', 
+            bgcolor: 'white', 
+            color: 'black', 
+            fontSize: '0.75rem',
+            fontWeight: '300',
+              '&:hover': {
+              borderColor: '#cccccc',
+              background: '#000',
+              color: 'white'}}}
+          onClick={handleCategoryClick}
+        >
+          Ver Camisetas
+        </Button>
       </Container>
     </Box>
   );
