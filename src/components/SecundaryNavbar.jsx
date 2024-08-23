@@ -14,7 +14,7 @@ export const SecondaryNavbar = ({ children }) => {
 
     return (
         <>
-            <AppBar position="fixed" color="inherit" elevation={0} sx={{ boxShadow: 'none', mt: {xs:8, sm:6, md:8} }}>
+            <AppBar position="fixed" color="inherit" elevation={0} sx={{ boxShadow: 'none', mt: {xs:6, sm:6, md:8} }}>
                 <Toolbar sx={{ justifyContent: 'center', flexWrap: 'wrap' }}>
                     <Link
                         onClick={() => handleFilterClick(name, 'Camisetas')}
@@ -28,9 +28,9 @@ export const SecondaryNavbar = ({ children }) => {
                             color: '#101010',
                             textTransform: 'none',
                             cursor: 'pointer',
-                            mx: 2,
                             fontFamily: 'Arial, sans-serif',
-                            fontWeight: '200',
+                            fontVariant: 'full-width',
+                            fontStretch: 'extra-condensed',
                             '&:hover': {
                                 textDecoration: 'none',
                             },

@@ -23,7 +23,7 @@ export const Landing = () => {
       sx={{
         width: '100%',
         padding: { xs: 2, sm: 2 },
-        height: { xs: '100vh', sm: '100vh' }, 
+        height: { xs: '88vh', sm: '100vh' }, 
         ...centeredFlex,
       }}
     >
@@ -64,7 +64,7 @@ export const Landing = () => {
       <Container
         sx={{
           position: 'absolute',
-          bottom: '10%',
+          bottom: {xs:'20%', sm:'10%'},
           left: '50%',
           pl: {xs: 3},
           transform: 'translateX(-50%)',
