@@ -11,6 +11,8 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import MenuIcon from '@mui/icons-material/Menu';
 import AllInboxIcon from '@mui/icons-material/AllInbox';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import CloseIcon from '@mui/icons-material/Close';
+
 
 import { SearchProduct } from '../modales/SearchProduct';
 
@@ -196,37 +198,51 @@ export const AppbarComponent = () => {
 
       {/* Modal for search */}
       <Modal
-        open={searchOpen}
-        onClose={handleSearchClose}
-        aria-labelledby="search-modal-title"
-        aria-describedby="search-modal-description"
+      open={searchOpen}
+      onClose={handleSearchClose}
+      aria-labelledby="search-modal-title"
+      aria-describedby="search-modal-description"
+      sx={{
+        backdropFilter: 'blur(10px)',
+      }}
+    >
+      <Box
         sx={{
-          backdropFilter: 'blur(10px)',
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          borderRadius: 2,
+          width: '100%',
+          height: { sx: '90%', sm: 580 },
+          maxWidth: 700,
+          maxHeight: '100vh',
+          overflow: 'auto',
+          background: '#FFF',
+          boxShadow: 24,
+          p: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 1,
         }}
       >
-        <Box
+        {/* Icono para cerrar el modal */}
+        <IconButton
+          onClick={handleSearchClose}
           sx={{
             position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            borderRadius: 2,
-            width: '100%',
-            height: { sx: '90%', sm: 580 },
-            maxWidth: 700,
-            maxHeight: '100vh',
-            overflow: 'auto',
-            background: '#FFF',
-            boxShadow: 24,
-            p: 1,
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 1,
+            top: 8,
+            right: 8,
+            zIndex: 10,
+            color: 'black',
           }}
         >
-          <SearchProduct onClose={handleSearchClose} />
-        </Box>
-      </Modal>
+          <CloseIcon />
+        </IconButton>
+
+        <SearchProduct onClose={handleSearchClose} />
+      </Box>
+    </Modal>
     </>
   );
 };

@@ -242,7 +242,7 @@ export const DetailsProduct = () => {
         </Grid>
       </Grid>
       <Divider sx={{ml: 5, mr: 5}}/>
-      <Grid item xs={12} sx={{...centeredFlex, flexDirection: 'column', pb: 3}}>
+      <Grid item xs={12} sx={{display: 'flex',flexDirection: 'column', justifyContent: 'center',alignItems: 'center',  pb: 3}}>
       <Typography
           variant="h4"
           color="black"
@@ -252,6 +252,7 @@ export const DetailsProduct = () => {
             fontFamily: 'Arial, sans-serif',
             fontWeight: '200',
             textTransform: 'uppercase',
+            textAlign: 'center'
           }}
         >
           Productos relacionados
