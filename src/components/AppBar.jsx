@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   AppBar, Box, Toolbar, Badge, IconButton, Typography, Container, Drawer,
-  List, ListItem, ListItemIcon, ListItemText, Grid, Modal, Button, useMediaQuery
+  List, ListItem, ListItemIcon, ListItemText, Grid, Modal, Button, useMediaQuery, Divider
 } from '@mui/material';
 
 import SearchIcon from '@mui/icons-material/Search';
@@ -179,7 +179,14 @@ export const AppbarComponent = () => {
               {/* Right Section: Cart */}
               <Grid item xs={3} md={4} sx={{ textAlign: 'right' }}>
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-                  <IconButton onClick={() => navigate('/cart')} size="small" aria-label="show cart items" color="inherit">
+                  <IconButton onClick={() => navigate('/cart')} 
+                    size="small" 
+                    aria-label="show cart items" 
+                    color="inherit"
+                    sx={{background: '#fff',
+                    '&:hover':{
+
+                    }}}>
                     <Badge badgeContent={numCart} color="error">
                       <ShoppingCartIcon />
                     </Badge>
@@ -190,7 +197,7 @@ export const AppbarComponent = () => {
           </Toolbar>
         </Container>
       </AppBar>
-
+        <Divider/>
       {/* Drawer for small screens */}
       <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
         {list()}
@@ -214,7 +221,7 @@ export const AppbarComponent = () => {
           transform: 'translate(-50%, -50%)',
           borderRadius: 2,
           width: '100%',
-          height: { sx: '90%', sm: 580 },
+          height: { xs: '90%', sm: 580 },
           maxWidth: 700,
           maxHeight: '100vh',
           overflow: 'auto',
@@ -231,7 +238,7 @@ export const AppbarComponent = () => {
           onClick={handleSearchClose}
           sx={{
             position: 'absolute',
-            top: 8,
+            top: {xs: 10, sm: 8},
             right: 8,
             zIndex: 10,
             color: 'black',

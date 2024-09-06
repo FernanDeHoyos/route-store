@@ -1,4 +1,4 @@
-import { Grid, Typography } from '@mui/material'
+import { Divider, Grid, Typography } from '@mui/material'
 import { ContentProducts } from '../components/ContentProducts'
 import { centeredFlex } from '../styles/Styles'
 import Footer from '../components/Footer'

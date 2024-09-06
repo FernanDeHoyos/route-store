@@ -105,7 +105,6 @@ export const ModalCart = ({anchorEl, handleClose, handleOpen, product}) => {
                 <Button variant="contained" 
                         color="primary"
                         onClick={handleToCart} 
-                        IconButton
                         startIcon={<ShoppingCartIcon/>}
                         sx={{
                             marginBottom: 1,

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AppBar, Toolbar, Box, Link } from '@mui/material';
+import { AppBar, Toolbar, Box, Link, Divider } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 
 export const SecondaryNavbar = ({ children }) => {

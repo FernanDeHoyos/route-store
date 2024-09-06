@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Grid, Typography, Button, Card, Divider, IconButton, TextField, MenuItem, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, CardMedia } from '@mui/material';
+import { Grid, Typography, Button, Card, Divider, IconButton, MenuItem, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, CardMedia, TextField } from '@mui/material';
 import { centeredFlex } from '../styles/Styles';
 import Footer from '../components/Footer';
 import { useForm } from '../hooks/useForm';
 import { useShopStore } from '../hooks/useShopStore';
 import { AlertDialog } from '../modales/AlertDialog';
+import { AlertG } from '../modales/AlertG';
+import { ProgresCircular } from '../components/DetailsComponents/ProgresCircular';
 
 
 // Tu código existente
 
 export const DatesShoping = () => {
 
-    const {onSaveShopping} = useShopStore();
+    const { onSaveShopping } = useShopStore();
     const { formState, onInputChange } = useForm({
         Nombre: '',
         Apellido: '',
@@ -26,6 +28,9 @@ export const DatesShoping = () => {
     const [totalPrice, setTotalPrice] = useState();
     const [errors, setErrors] = useState({});
     const [openDialog, setOpenDialog] = useState(false);
+    const [openDia, setOpenDia] = useState(false);
+    const [checking, setChecking] = useState(false);
+
 
     useEffect(() => {
         const productsFromStorage = JSON.parse(localStorage.getItem('productsCart')) || [];
@@ -51,11 +56,13 @@ export const DatesShoping = () => {
     };
 
     const handleOpenDialog = () => {
-        if(validateForm()) {
-            setOpenDialog(true);
-        } else {
-            console.log('Formulario no válido');
+        if (!validateForm() || storedProduct.length <= 0) {
+            console.log(storedProduct, 'Formulario no válido');
+            setOpenDia(true)
+            return
         }
+        setOpenDialog(true);
+
     };
 
     const handleCloseDialog = () => {
@@ -64,28 +71,40 @@ export const DatesShoping = () => {
 
     const sendWhatsAppMessage = (array) => {
         const { Nombre, Apellido, Celular, Direccion, Ciudad, CodigoPostal, Especificaciones_envio } = array[0];
-        const products = array[1].map(product => 
+        const products = array[1].map(product =>
             `${product.name} (Color: ${product.selectedColor}, Talla: ${product.selectedSize}, Cantidad: ${product.quantity})`
         ).join('\n');
-    
+
         const message = `Nueva Compra:\n\nInformación del Cliente:\nNombre: ${Nombre} ${Apellido}\nTeléfono: ${Celular}\nDirección: ${Direccion}, ${Ciudad}\nCódigo Postal: ${CodigoPostal}\nEspecificaciones: ${Especificaciones_envio}\n\nProductos:\n${products}\n\nPrecio Total: $${totalPrice}`;
         const encodedMessage = encodeURIComponent(message);
         const phoneNumber = '3136601690'; // Reemplazar con el número de teléfono del destinatario
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-        
+
         window.open(whatsappUrl, '_blank');
     };
-    
 
-    const handleConfirmPurchase = async() => {
+
+    const handleConfirmPurchase = async () => {
         const array = [formState, storedProduct];
         console.log(array);
         handleCloseDialog();
         sendWhatsAppMessage(array)
         console.log('cargando...');
-        ///await onSaveShopping(array);
+        setChecking(true)
+        await onSaveShopping(array);
+        setChecking(false)
         console.log('termino...');
     };
+
+    const handleCloseDia = () => {
+        setOpenDia(false);
+    };
+
+    if (checking) {
+        return (
+            <ProgresCircular />
+        )
+    }
 
     return (
         <>
@@ -94,7 +113,7 @@ export const DatesShoping = () => {
                     <Typography variant="h4" component="h1" gutterBottom>
                         Datos para hacer el envio
                     </Typography>
-                    <Grid item xs={12} md={12} 
+                    <Grid item xs={12} md={12}
                         sx={{
                             ...centeredFlex,
                             justifyContent: 'space-between',
@@ -103,12 +122,12 @@ export const DatesShoping = () => {
                         }}>
                         {Object.keys(formState).map((key) => {
                             let type = 'text';
-                            if(key === 'phone' || key === 'postalCode') {
+                            if (key === 'phone' || key === 'postalCode') {
                                 type = 'number';
                             } else {
                                 type = 'text';
                             }
-                            return(
+                            return (
                                 <TextField
                                     key={key}
                                     fullWidth
@@ -124,24 +143,19 @@ export const DatesShoping = () => {
                                     sx={{
                                         padding: 0,
                                         width: { xs: '40%', md: '45%' },
-                                        m:1,
-                                        bgcolor: '#f8fcff',
-                                        borderRadius: 2,
+                                        m: 1,
+                                        border: '1px solid #fff',
                                         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', // Sombra para destacar el campo de texto
                                         '&:hover': {
-                                            borderColor: 'rgba(0, 0, 0, 0.5)', // Color de borde al hacer hover
-                                        },
-                                        '&.Mui-focused ': {
-                                            borderColor: 'rgba(0, 0, 0, 0.5)', // Color de borde al estar enfocado
-                                            bgcolor: '#f8fcff'
-                                        },
-                                        '& .MuiInputLabel-root': {
-                                            color: 'rgba(0, 0, 0, 0.5)', // Color del label
-                                        },
+
+                                        }
+                              
                                     }}
                                 />
                             );
                         })}
+
+                        
                     </Grid>
                 </Grid>
                 <Grid item xs={12} md={4}>
@@ -149,26 +163,26 @@ export const DatesShoping = () => {
                         <Typography variant="h5" gutterBottom>
                             Sobre su compra
                         </Typography>
-                        
+
                         <Divider sx={{ my: 2 }} />
-                        <Typography variant="body2" sx={{ pb: 2 }}>
+                        <Typography variant="body2" sx={{ pb: 2, fontWeight: 'bold' }}>
                             Subtotal <span style={{ float: 'right' }}>${totalPrice}</span>
                         </Typography>
                         {storedProduct.map((produc) => (
-                            <Typography  variant="body2" key={produc.id + produc.selectedColor + produc.selectedSize}>
+                            <Typography variant="body2" key={produc.id + produc.selectedColor + produc.selectedSize} sx={{ fontWeight: 'bold' }}>
                                 {produc.name} x {produc.quantity} <span style={{ float: 'right' }}>${produc.price * produc.quantity}</span>
                             </Typography>
                         ))}
-                        
+
                         <Divider sx={{ my: 2 }} />
                         <Typography variant="h6">
                             Total <span style={{ float: 'right' }}>${totalPrice}</span>
                         </Typography>
                         <Divider sx={{ my: 2 }} />
-                        <Button 
-                            variant="contained" 
-                            color="primary" 
-                            fullWidth 
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            fullWidth
                             onClick={handleOpenDialog}
                             sx={{
                                 marginRight: 1,
@@ -186,9 +200,9 @@ export const DatesShoping = () => {
                             Comprar
                         </Button>
                     </Card>
-                    <Grid sx={{width: '100%'}}>
-                        <TableContainer elevation={0} component={Paper} sx={{width: '100%', maxWidth: '100%'}}>
-                            <Table sx={{width: '100%'}}>
+                    <Grid sx={{ width: '100%' }}>
+                        <TableContainer elevation={0} component={Paper} sx={{ width: '100%', maxWidth: '100%' }}>
+                            <Table sx={{ width: '100%' }}>
                                 <TableBody>
                                     {storedProduct.map((item) => (
                                         <TableRow key={item.id + item.selectedColor + item.selectedSize} sx={{
@@ -234,7 +248,7 @@ export const DatesShoping = () => {
                                                     </Grid>
                                                 </Grid>
                                             </TableCell>
-                                            <TableCell align="right">{item.quantity} x ${item.price }</TableCell>
+                                            <TableCell align="right">{item.quantity} x ${item.price}</TableCell>
                                         </TableRow>
                                     ))}
                                 </TableBody>
@@ -244,13 +258,20 @@ export const DatesShoping = () => {
                 </Grid>
             </Grid>
             <Footer />
-            <AlertDialog 
-                open={openDialog} 
-                handleClose={handleCloseDialog} 
+            <AlertDialog
+                open={openDialog}
+                handleClose={handleCloseDialog}
                 handleConfirm={handleConfirmPurchase}
-                phone={formState.Celular} 
+                phone={formState.Celular}
                 address={formState.Direccion}
                 specifications={formState.Especificaciones_envio}
+            />
+
+            <AlertG
+                open={openDia}
+                handleClose={handleCloseDia}
+                title={'Carrito vacio'}
+                body={'No hay ningun producto en el carrito para hacer su compra'}
             />
         </>
     );

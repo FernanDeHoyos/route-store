@@ -16,20 +16,20 @@ export const AlertDialog = ({ open, handleClose, handleConfirm, phone, address, 
         <Typography id="alert-dialog-description">
           Por favor si esta seguro de estos datos pulse en confirmar, recuerde que sucompra se enviara a la direccion sugerida:
         </Typography>
-        <Typography variant="body2" sx={{ pb: 2, mt: 3 }}>
+        <Typography variant="body2" sx={{ pb: 2, mt: 3, fontWeight: 'bold' }}>
           Celular: <span style={{ float: 'right' }}>{phone}</span>
         </Typography>
-        <Typography variant="body2" sx={{ pb: 2 }}>
+        <Typography variant="body2" sx={{ pb: 2, fontWeight: 'bold' }}>
           Dirección: <span style={{ float: 'right' }}>{address}</span>
         </Typography>
-        <Typography variant="body2" sx={{ pb: 2 }}>
+        <Typography variant="body2" sx={{ pb: 2, fontWeight: 'bold' }}>
           Especificaciones: <span style={{ float: 'right' }}>{specifications}</span>
         </Typography>
       </DialogContent>
       <DialogActions
         sx={{
           display: 'flex',
-          flexDirection: 'column',
+          flexDirection: 'row',
           justifyContent: 'center',
           alignContent: 'center',
           alignItems: 'center',
@@ -41,7 +41,7 @@ export const AlertDialog = ({ open, handleClose, handleConfirm, phone, address, 
           fullWidth
           sx={{
             marginBottom: 1,
-            background: '#000',
+            background: '#3C1C0C',
             fontSize: '0.75rem',
             fontWeight: '300',
             color: 'white',

@@ -8,6 +8,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { centeredFlex } from '../styles/Styles';
 import { useShopStore } from '../hooks/useShopStore';
 import Footer from '../components/Footer';
+import { AlertG } from '../modales/AlertG';
 
 export const DetailsCart = () => {
     const { SetRemoveFromCart } = useShopStore();
@@ -15,6 +16,7 @@ export const DetailsCart = () => {
     const { cart } = useSelector((state) => state.shop);
     const [storedProduct, setStoredProduct] = useState([]);
     const [cartItems, setCartItems] = useState([]);
+    const [openDialog, setOpenDialog] = useState(false);
 
     useEffect(() => {
         // Obtener y establecer los productos desde localStorage al montar el componente
@@ -50,8 +52,17 @@ export const DetailsCart = () => {
 
 
     const handleShop = () => {
-        navigate('/cart/addres')
+        if(storedProduct.length <= 0){
+            console.log('no hay productos');
+            setOpenDialog(true)
+            return
+        }
+            navigate('/cart/addres') 
     }
+
+    const handleCloseDialog = () => {
+        setOpenDialog(false);
+    };
     
 
     return (
@@ -161,8 +172,8 @@ export const DetailsCart = () => {
                                             ))}
                                         </TextField>
                                     </TableCell>
-                                    <TableCell align="right">${item.price.toFixed(2)}</TableCell>
-                                    <TableCell align="right">${(item.price * item.quantity).toFixed(2)}</TableCell>
+                                    <TableCell align="right" >${item.price.toFixed(2)}</TableCell>
+                                    <TableCell align="right" sx={{fontWeight: 'bold'}}>${(item.price * item.quantity).toFixed(2)}</TableCell>
                                     <TableCell align="center">
                                         <IconButton aria-label="delete" onClick={() => removeFromCart(item.id, item.selectedSize, item.selectedColor)}>
                                             <DeleteIcon />
@@ -180,12 +191,12 @@ export const DetailsCart = () => {
                         Sobre su compra 
                     </Typography>
                    
-                    <Typography variant="body2" sx={{ pb: 2 }}>
+                    <Typography variant="body2" sx={{ pb: 2, fontWeight: 'bold' }}>
                          Subtotal <span style={{ float: 'right' }}>${cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}</span>
                         </Typography>
                     <Divider sx={{ my: 2 }} />
                     {storedProduct.map((product) => (
-                        <Typography key={product.id + product.selectedColor + product.selectedSize} variant="body2" sx={{ pb: 2 }}>
+                        <Typography key={product.id + product.selectedColor + product.selectedSize} variant="body2" sx={{ pb: 2, fontWeight: 'bold' }}>
                         {product.name} - 
                         {product.selectedSize} - 
                         {product.selectedColor} x 
@@ -222,6 +233,12 @@ export const DetailsCart = () => {
             </Grid>
         </Grid>
             <Footer />
+            <AlertG
+            open={openDialog}
+            handleClose={handleCloseDialog}
+            title={'Carrito vacio'}
+            body={'No hay ningun producto en el carrito para hacer su compra'}
+            />
         </>
     );
 };

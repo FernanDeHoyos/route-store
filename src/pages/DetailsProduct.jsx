@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import {Grid, Typography, Button, Card, CardContent, CardMedia, Divider, Alert} from '@mui/material';
 
@@ -12,25 +12,32 @@ import { ModalCart } from '../modales/ModalCart';
 import InnerImageZoom from 'react-inner-image-zoom';
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.min.css';
 import { ContentProducts } from '../components/ContentProducts';
+import { useParams } from 'react-router-dom';
 
 export const DetailsProduct = () => {
   const { activeProduct } = useSelector((state) => state.shop);
   const { SetActiveProduct, SetAddCart } = useShopStore();
   const [selectedColor, setSelectedColor] = useState('');
-  const [modal, setModal] = useState(false);
   const [productAdd, setProductAdd] = useState('');
   const [isDisabled, setIsDisabled] = useState(false);
   const [selectedSize, setSelectedSize] = useState('');
   const [displayedImage, setDisplayedImage] = useState('');
   const [isAlert, setIsAlert] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
 
+
+  const {type, productId} = useParams();
+
+  //obtener producto activo de localstorage
   useEffect(() => {
     const storedProduct = localStorage.getItem('activeProduct');
     if (storedProduct) {
       SetActiveProduct(JSON.parse(storedProduct));
     }
-  }, []);
+  }, [productId]);
 
+
+  //hacer cambio de imagen segun el color seleccionado
   useEffect(() => {
     if (activeProduct && selectedColor) {
       setDisplayedImage(activeProduct.images[selectedColor]);
@@ -39,24 +46,35 @@ export const DetailsProduct = () => {
     }
   }, [activeProduct, selectedColor]);
 
-  const [anchorEl, setAnchorEl] = useState(null);
+  //volver a desabilitar los botones de size y color si se cambia de producto 
+  useEffect(()=>{
+    setIsDisabled(false)
+    setSelectedSize(false)
+    console.log(selectedColor);
+  },[productId])
 
+
+  //abre el modal de se agrego al carrito
   const handleOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
+  //cierra el modal de se agrego al carrito
   const handleClose = () => {
     setAnchorEl(null);
   };
 
+  //selecciona un color
   const handleColorClick = (color) => {
     setSelectedColor(color);
   };
 
+  //selecciona una talla o tamaño
   const handleSizeClick = (size) => {
     setSelectedSize(size);
   };
 
+  //agrega un producto al carrito 
   const handleAddCart = (event) => {
     const productsFromStorage = JSON.parse(localStorage.getItem('productsCart')) || [];
     const productDetails = {
@@ -83,15 +101,13 @@ export const DetailsProduct = () => {
       setProductAdd(productDetails);
       setModal(true);
       setAnchorEl(event.currentTarget);
-    } else {
+      setIsAlert(false);
+      return
+    }
       setIsAlert(true);
       console.log('Product already in cart');
-    }
   };
 
-  const handleOnCloseModal = () => {
-    setModal(false);
-  };
 
   if (!activeProduct) {
     return <Typography variant="h6">Product not found</Typography>;
