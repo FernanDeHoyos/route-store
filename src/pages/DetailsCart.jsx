@@ -104,7 +104,7 @@ export const DetailsCart = () => {
                                             background: '#f8fcff',
                                         },
                                     }}>
-                                        <TableCell component="th" scope="row" >
+                                        <TableCell component="th" scope="row" sx={{p:0}} >
                                             <Grid container spacing={1}
                                                 sx={{
                                                     ...centeredFlex,
@@ -124,7 +124,7 @@ export const DetailsCart = () => {
                                                             ...centeredFlex,
                                                             padding: 1,
                                                             height: '100%',
-                                                            width: { xs: 50, sm: 100, md: 100 },
+                                                            width: { xs: 30, sm: 100, md: 100 },
                                                             flexDirection: 'column',
                                                             border: '0.5px solid #cccccc',
                                                             borderRadius: 2.5,
@@ -162,7 +162,7 @@ export const DetailsCart = () => {
                                             </Grid>
 
                                         </TableCell>
-                                        <TableCell align="center" sx={{ ...centeredFlex, flexDirection: 'row', alignItems: 'center', height: '100px' }}>
+                                        <TableCell align="center" sx={{p:0, ...centeredFlex, flexDirection: 'row', alignItems: 'center', height: '100px' }}>
                                             <TextField
                                                 select
                                                 value={item.quantity}
@@ -200,7 +200,7 @@ export const DetailsCart = () => {
                                                 sm: 'table-cell',
                                             },
                                         }}>${(item.price * item.quantity).toFixed(2)}</TableCell>
-                                        <TableCell sx={{ fontWeight: 300 }}>${(item.price * item.quantity).toFixed(2)}</TableCell>
+                                        <TableCell sx={{ fontWeight: 300, p:0 }}>${(item.price * item.quantity).toFixed(2)}</TableCell>
 
                                     </TableRow>
                                 ))}
