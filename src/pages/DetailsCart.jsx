@@ -111,7 +111,7 @@ export const DetailsCart = () => {
                                                     flexDirection: 'row',
                                                     flexWrap: 'nowrap',
                                                     justifyContent: 'flex-start',
-
+                                                    p:1
                                                 }} >
                                                 <Grid item
                                                     sx={{
@@ -162,7 +162,7 @@ export const DetailsCart = () => {
                                             </Grid>
 
                                         </TableCell>
-                                        <TableCell align="center" sx={{p:0, ...centeredFlex, flexDirection: 'row', alignItems: 'center', height: '100px' }}>
+                                        <TableCell align="center" sx={{p:1, ...centeredFlex, flexDirection: 'row', alignItems: 'center', height: '100px' }}>
                                             <TextField
                                                 select
                                                 value={item.quantity}
