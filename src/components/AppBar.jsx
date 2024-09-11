@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   AppBar, Box, Toolbar, Badge, IconButton, Typography, Container, Drawer,
-  List, ListItem, ListItemIcon, ListItemText, Grid, Modal, Button, useMediaQuery, Divider
+  List, ListItem, ListItemIcon, ListItemText, Grid, Modal, Button, useMediaQuery, Divider, Popover
 } from '@mui/material';
 
 import SearchIcon from '@mui/icons-material/Search';
@@ -15,6 +15,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 
 import { SearchProduct } from '../modales/SearchProduct';
+import { PopoverCart } from '../modales/PopoverCart';
 
 export const AppbarComponent = () => {
   const navigate = useNavigate();
@@ -24,8 +25,23 @@ export const AppbarComponent = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [numCart, setNumCart] = useState(0);
-
+  
   const { cart } = useSelector((state) => state.shop);
+
+  //abrir vista de carrito con hover
+  const handlePopoverOpen = (event) => {
+    console.log(event.currentTarget);
+    setAnchorEl(event.currentTarget); // Establece el elemento de anclaje para el Popover
+  };
+
+  //cerrar vista de carrito
+  const handlePopoverClose = () => {
+    setAnchorEl(null) 
+  };
+  
+  const [anchorEl, setAnchorEl] = useState(null);
+  //variable para detectar el cambio de anchorEl para abrir o cerrar vista de carrito
+  const open = Boolean(anchorEl);
 
   const handleBackClick = () => {
     navigate(-1); // Navega a la página anterior
@@ -39,18 +55,18 @@ export const AppbarComponent = () => {
   useEffect(() => {
     updateCartCount();
   }, [cart]);
-
+  
   const toggleDrawer = (open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
     setDrawerOpen(open);
   };
-
+  
   const handleSearchOpen = () => {
     setSearchOpen(true);
   };
-
+  
   const handleSearchClose = () => {
     setSearchOpen(false);
   };
@@ -167,7 +183,7 @@ export const AppbarComponent = () => {
                       fontFamily: 'monospace',
                       fontWeight: 700,
                       letterSpacing: { xs: '.1rem', md: '.3rem' },
-                      color: 'GrayText',
+                      color: 'black',
                       textDecoration: 'none',
                     }}
                   >
@@ -186,7 +202,10 @@ export const AppbarComponent = () => {
                     sx={{background: '#fff',
                     '&:hover':{
 
-                    }}}>
+                    }}}
+                    onMouseEnter={handlePopoverOpen}
+                    //</Box>onMouseLeave={handlePopoverClose}
+                     >
                     <Badge badgeContent={numCart} color="error">
                       <ShoppingCartIcon />
                     </Badge>
@@ -250,6 +269,11 @@ export const AppbarComponent = () => {
         <SearchProduct onClose={handleSearchClose} />
       </Box>
     </Modal>
+
+    <PopoverCart 
+      open={open} 
+      anchorEl={anchorEl} 
+      handlePopoverClose={handlePopoverClose} />
     </>
   );
 };

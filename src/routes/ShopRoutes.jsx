@@ -17,6 +17,7 @@ export const ShopRoutes = () => {
         <Route path="/cart" element={<DetailsCart />} />
         <Route path="/cart/addres" element={<DatesShoping />} />
         <Route path="/category/:name/:type?" element={<CategoryFilter />} />
+        <Route path="/cart/product/:type/:productId" element={<DetailsProduct />} />
    </Routes>
   )
 }

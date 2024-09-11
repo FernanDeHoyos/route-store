@@ -12,9 +12,11 @@ import { ModalCart } from '../modales/ModalCart';
 import InnerImageZoom from 'react-inner-image-zoom';
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.min.css';
 import { ContentProducts } from '../components/ContentProducts';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 export const DetailsProduct = () => {
+  const location = useLocation();
+
   const { activeProduct } = useSelector((state) => state.shop);
   const { SetActiveProduct, SetAddCart } = useShopStore();
   const [selectedColor, setSelectedColor] = useState('');
@@ -23,10 +25,10 @@ export const DetailsProduct = () => {
   const [selectedSize, setSelectedSize] = useState('');
   const [displayedImage, setDisplayedImage] = useState('');
   const [isAlert, setIsAlert] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
 
 
   const {type, productId} = useParams();
+  const par = useParams();
 
   //obtener producto activo de localstorage
   useEffect(() => {
@@ -39,47 +41,59 @@ export const DetailsProduct = () => {
 
   //hacer cambio de imagen segun el color seleccionado
   useEffect(() => {
-    if (activeProduct && selectedColor) {
-      setDisplayedImage(activeProduct.images[selectedColor]);
-    } else if (activeProduct) {
-      setDisplayedImage(Object.values(activeProduct.images)[0]);
+    if(location.pathname === `/product/${type}/${productId}`){
+      if (activeProduct && selectedColor) {
+        setDisplayedImage(activeProduct.images[selectedColor]);
+      } else if (activeProduct) {
+        setDisplayedImage(Object.values(activeProduct.images)[0]);
+      }
     }
   }, [activeProduct, selectedColor]);
 
-  //volver a desabilitar los botones de size y color si se cambia de producto 
+  //hacer cambio de variables segun el path o ruta
+  useEffect(() => {
+    if(location.pathname === `/cart/product/${type}/${productId}`){
+      setDisplayedImage(activeProduct?.image)
+      setSelectedColor(activeProduct?.selectedColor)
+      setSelectedSize(activeProduct?.selectedSize)
+      setSelectedSize(false)
+    }
+  },[activeProduct])
+
+  //volver a desabilitar los botones de size y color si se cambia de producto
   useEffect(()=>{
     setIsDisabled(false)
     setSelectedSize(false)
-    console.log(selectedColor);
   },[productId])
 
+  const [anchorEl, setAnchorEl] = useState(null);
 
-  //abre el modal de se agrego al carrito
   const handleOpen = (event) => {
     setAnchorEl(event.currentTarget);
+    console.log('popover');
   };
 
-  //cierra el modal de se agrego al carrito
   const handleClose = () => {
     setAnchorEl(null);
   };
 
-  //selecciona un color
   const handleColorClick = (color) => {
     setSelectedColor(color);
+    console.log(color);
   };
 
-  //selecciona una talla o tamaño
   const handleSizeClick = (size) => {
     setSelectedSize(size);
+    console.log(size);
   };
 
-  //agrega un producto al carrito 
+  //funcion para agregar un producto al carrito
   const handleAddCart = (event) => {
     const productsFromStorage = JSON.parse(localStorage.getItem('productsCart')) || [];
     const productDetails = {
       id: activeProduct.id,
       name: activeProduct.name,
+      type: activeProduct.type,
       price: activeProduct.price,
       image: displayedImage,
       quantity: 1,
@@ -99,9 +113,10 @@ export const DetailsProduct = () => {
       SetAddCart(productDetails);
       setIsDisabled(true);
       setProductAdd(productDetails);
-      setModal(true);
       setAnchorEl(event.currentTarget);
       setIsAlert(false);
+      setSelectedColor('')
+      setSelectedSize('')
       return
     }
       setIsAlert(true);
@@ -116,8 +131,8 @@ export const DetailsProduct = () => {
   return (
     <>
       <Grid container spacing={4} sx={{ padding: 4, pt: 15, background: '#fcfeff' }}>
+
         <Grid item xs={12} md={3} sx={{ ...centeredFlex, flexDirection: 'column' }}>
-         
           <Typography variant="h4" component="h1">
             {activeProduct.name}
           </Typography>
@@ -129,6 +144,7 @@ export const DetailsProduct = () => {
             <PurchasesReturns />
           </Grid>
         </Grid>
+
         <Grid item xs={12} md={6} sx={{ pt: 10, height: 500, ...centeredFlex, width: '100%' }}>
           <Card
             elevation={0}
@@ -163,14 +179,15 @@ export const DetailsProduct = () => {
             />
           </Card>
         </Grid>
-        <Grid item xs={12} md={3}>
+
+        <Grid item xs={12} md={3} sx={{width: '100%'}}>
           <Card elevation={0} sx={{ backgroundColor: 'transparent', ...centeredFlex }}>
-            <CardContent>
+            <CardContent sx={{width: '100%'}}>
               <Typography variant="h6" sx={{ fontWeight: '300' }}>
                 Color
               </Typography>
               <div>
-                {activeProduct.colors && activeProduct.colors.map((color) => (
+                { activeProduct.colors ? ( activeProduct.colors && activeProduct.colors.map((color) => (
                   <Button
                     key={color}
                     variant="outlined"
@@ -192,14 +209,28 @@ export const DetailsProduct = () => {
                   >
                     {color}
                   </Button>
-                ))}
+                ))) : <Typography variant="p" 
+                sx={{ 
+                  marginRight: 1,
+                  marginBottom: 1,
+                  background: '#fff',
+                  fontFamily: 'Arial, Beiruti',
+                  fontSize: '0.75rem',
+                  fontWeight: '300',
+                  color: 'black',
+                  p: 0.5,
+                  border: `2px solid ${activeProduct.selectedColor}`,
+                  borderRadius: 1,
+                 }}>
+                {activeProduct.selectedColor}
+              </Typography>}
               </div>
               <Divider sx={{ pt: 3 }} />
               <Typography variant="h6" sx={{ marginTop: 2, fontWeight: '300' }}>
-                Seleccione talla
+                Talla
               </Typography>
               <div>
-                {activeProduct.sizes && activeProduct.sizes.map((size) => (
+                { activeProduct.sizes ? ( activeProduct.sizes && activeProduct.sizes.map((size) => (
                   <Button
                     key={size}
                     variant="outlined"
@@ -220,15 +251,29 @@ export const DetailsProduct = () => {
                   >
                     {size}
                   </Button>
-                ))}
+                ))) : <Typography variant="p" 
+                sx={{
+                  marginRight: 1,
+                  marginBottom: 1,
+                  background: '#fff',
+                  fontFamily: 'Arial, Beiruti',
+                  fontSize: '0.75rem',
+                  fontWeight: '300',
+                  color: 'black',
+                  p: 0.5,
+                  border: `2px solid ${activeProduct.selectedColor}`,
+                  borderRadius: 1,
+                }}>
+                {activeProduct.selectedSize}
+              </Typography>}
               </div>
               <Divider sx={{ pt: 3 }} />
-              <Typography variant="h4" sx={{ marginTop: 4, fontWeight: '300' }}>
-                ${activeProduct.price}
+              <Typography variant="h4" sx={{ marginTop: 4, fontWeight: '300', ...centeredFlex, justifyContent: 'space-between' }}>
+                <span>$</span> <span>{activeProduct.price}</span>
               </Typography>
               <Button 
                 variant="contained" 
-                disabled={!selectedColor || !selectedSize || isDisabled}
+                disabled={!selectedColor || !selectedSize}
                 fullWidth 
                 onClick={handleAddCart}
                 sx={{
@@ -245,7 +290,7 @@ export const DetailsProduct = () => {
                   },
                 }}
               >
-                Seleccionar
+                {location.pathname === `/cart/product/${type}/${productId}` ? 'En carrito' : 'Seleccionar'}
               </Button>
               {isAlert && (
                 <Alert variant="outlined" severity="warning">
@@ -256,7 +301,9 @@ export const DetailsProduct = () => {
             </CardContent>
           </Card>
         </Grid>
+
       </Grid>
+      
       <Divider sx={{ml: 5, mr: 5}}/>
       <Grid item xs={12} sx={{display: 'flex',flexDirection: 'column', justifyContent: 'center',alignItems: 'center',  pb: 3}}>
       <Typography

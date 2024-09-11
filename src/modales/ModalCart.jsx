@@ -7,6 +7,7 @@ import { centeredFlex } from '../styles/Styles';
 export const ModalCart = ({anchorEl, handleClose, handleOpen, product}) => {
 
     const navigate = useNavigate()
+    
     const handleToCart = () => {
         navigate('/cart')
     }
