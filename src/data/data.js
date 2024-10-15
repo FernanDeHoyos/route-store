@@ -9,13 +9,20 @@ export const products = [
     salePrice: 70000,
     images: {
       Negro: {
-        front: '/jeans/milan_.png',
-        back: '/jeans/milan.png',
+        front: '/jeans/milan.webp',
+        back: '/jeans/milan_.webp',
+      },
+    },
+    imageIco: {
+      Negro: {
+        front: '/jeans/icon/milan_50x50_1.webp',
+        back: '/jeans/icon/milan_50x50_2.webp',
       },
     },
     colors: ['Negro'],
     sizes: ['30', '32', '34']
   },
+
   {
     id: 2,
     type: 'Jeans',
@@ -26,8 +33,14 @@ export const products = [
     salePrice: 70000,
     images: {
       Azul: {
-        front: '/jeans/berlin.png',
-        back: '/jeans/berlin_.png',
+        front: '/jeans/berlin.webp',
+        back: '/jeans/berlin_.webp',
+      },
+    },
+    imageIco: {
+      Negro: {
+        front: '/jeans/icon/berlin_50x50_1.webp',
+        back: '/jeans/icon/berlin_50x50_2.webp',
       },
     },
     colors: ['Azul'],
@@ -43,8 +56,14 @@ export const products = [
     salePrice: 70000,
     images: {
       Azul: {
-        front: '/jeans/boston.png',
-        back: '/jeans/boston_.png',
+        front: '/jeans/boston.webp',
+        back: '/jeans/boston_.webp',
+      },
+    },
+    imageIco: {
+      Negro: {
+        front: '/jeans/icon/boston_50x50_1.webp',
+        back: '/jeans/icon/boston_50x50_2.webp',
       },
     },
     colors: ['Azul'],
@@ -60,8 +79,14 @@ export const products = [
     salePrice: 70000,
     images: {
       Azul: {
-        front: '/jeans/dubai.png',
-        back: '/jeans/dubai.png',
+        front: '/jeans/dubai.webp',
+        back: '/jeans/dubai_.webp',
+      },
+    },
+    imageIco: {
+      Negro: {
+        front: '/jeans/icon/dubai_50x50_1.webp',
+        back: '/jeans/icon/dubai_50x50_2.webp',
       },
     },
     colors: ['Azul'],
@@ -77,8 +102,14 @@ export const products = [
     salePrice: 70000,
     images: {
       Negro: {
-        front: '/jeans/kairo.png',
-        back: '/jeans/kairo_.png',
+        front: '/jeans/kairo.webp',
+        back: '/jeans/kairo_.webp',
+      },
+    },
+    imageIco: {
+      Negro: {
+        front: '/jeans/icon/kairo_50x50_2.webp',
+        back: '/jeans/icon/kairo_50x50_1.webp',
       },
     },
     colors: ['Negro'],
@@ -94,9 +125,15 @@ export const products = [
     salePrice: 70000,
     images: {
       Azul: {
-        front: '/jeans/lyon.png',
-        back: '/jeans/lyon_.png',
+        front: '/jeans/lyon.webp',
+        back: '/jeans/lyon_.webp',
         
+      },
+    },
+    imageIco: {
+      Negro: {
+        front: '/jeans/icon/lyon_50x50_1.webp',
+        back: '/jeans/icon/lyon_50x50_2.webp',
       },
     },
     colors: ['Azul'],

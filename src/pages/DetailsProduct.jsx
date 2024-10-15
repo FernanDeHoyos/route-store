@@ -26,6 +26,7 @@ export const DetailsProduct = () => {
   const [isDisabled, setIsDisabled] = useState(false);
   const [selectedSize, setSelectedSize] = useState('');
   const [displayedImage, setDisplayedImage] = useState('');
+  const [displayedImageZoom, setDisplayedImageZoom] = useState('');
   const [ChallengImage, setChallengImage] = useState('');
   const [isAlert, setIsAlert] = useState(false);
 
@@ -79,7 +80,7 @@ useEffect(() => {
   useEffect(() => {
     if (location.pathname === `/cart/product/${type}/${productId}`) {
       setDisplayedImage(activeProduct?.image)
-      setChallengImage(activeProduct.image)
+      setChallengImage(activeProduct?.imageIco)
       setSelectedColor(activeProduct?.selectedColor)
       setSelectedSize(activeProduct?.selectedSize)
       setSelectedSize(false)
