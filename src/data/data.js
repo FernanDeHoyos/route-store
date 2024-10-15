@@ -1,314 +1,197 @@
 export const products = [
   {
     id: 1,
-    type: 'Camisetas',
-    name: 'Buso negro',
+    type: 'Jeans',
+    name: 'Jean confort',
     genero: 'Hombre',
-    description: 'Buso negro con capota, de algodon',
-    price: 300,
-    salePrice: 250,
+    description: 'Jean negro, skinny',
+    price: 79900,
+    salePrice: 70000,
     images: {
-      Black: '/buso.webp',
-      Brown: '/logo_.png',
-      Navy: '/logo.jpg'
+      Negro: {
+        front: '/jeans/milan_.png',
+        back: '/jeans/milan.png',
+      },
     },
-    colors: ['Black', 'Brown', 'Navy'],
-    sizes: ['S', 'M', 'L', 'XL']
+    colors: ['Negro'],
+    sizes: ['30', '32', '34']
   },
   {
     id: 2,
-    type: 'Calzado',
-    name: 'Leather Boots',
-    genero: 'Mujer',
-    description: 'Durable and stylish leather boots',
-    price: 120,
-    salePrice: 100,
+    type: 'Jeans',
+    name: 'Jean claro',
+    genero: 'Hombre',
+    description: 'Jean azul claro, skinny',
+    price: 79900,
+    salePrice: 70000,
     images: {
-      Black: '/logo_.png',
-      Brown: '/logo_.png',
+      Azul: {
+        front: '/jeans/berlin.png',
+        back: '/jeans/berlin_.png',
+      },
     },
-    colors: ['Black', 'Brown'],
-    sizes: ['7', '8', '9', '10', '11']
+    colors: ['Azul'],
+    sizes: ['30', '32', '34']
   },
   {
     id: 3,
     type: 'Jeans',
-    name: 'Denim Jeans',
+    name: 'Jean azul rotos',
     genero: 'Hombre',
-    description: 'Comfortable and trendy denim jeans',
-    price: 80,
-    salePrice: 65,
+    description: 'Jean azul rotos, skinny',
+    price: 79900,
+    salePrice: 70000,
     images: {
-      Brown: '/logo_.png',
-      Blue: '/logo_.png'
+      Azul: {
+        front: '/jeans/boston.png',
+        back: '/jeans/boston_.png',
+      },
     },
-    colors: ['Blue', 'Black'],
-    sizes: ['28', '30', '32', '34', '36']
+    colors: ['Azul'],
+    sizes: ['30', '32', '34']
   },
   {
     id: 4,
-    type: 'Camisetas',
-    name: 'camiseta algodon',
+    type: 'Jeans',
+    name: 'Jeans azul confort ',
     genero: 'Hombre',
-    description: 'camiseta algodon',
-    price: 25,
-    salePrice: 20,
+    description: 'Jean azul denver skinny',
+    price: 79900,
+    salePrice: 70000,
     images: {
-      White: '/sueter.png',
-      Black: '/camiseta.jpg',
-      Gray: '/logo_.png'
+      Azul: {
+        front: '/jeans/dubai.png',
+        back: '/jeans/dubai.png',
+      },
     },
-    colors: ['White', 'Black', 'Gray'],
-    sizes: ['S', 'M', 'L', 'XL']
+    colors: ['Azul'],
+    sizes: ['30', '32', '34']
   },
   {
     id: 5,
-    type: 'Camisetas',
-    name: 'Wool Sweater',
-    genero: 'Mujer',
-    description: 'Warm and cozy wool sweater',
-    price: 60,
-    salePrice: 50,
+    type: 'Jeans',
+    name: 'Jeans negro rotos ',
+    genero: 'Hombre',
+    description: 'Jean negro kairo skinny',
+    price: 79900,
+    salePrice: 70000,
     images: {
-      Black: '/buso.webp',
-      Brown: '/logo_.png',
-      Navy: '/logo.jpg'
+      Negro: {
+        front: '/jeans/kairo.png',
+        back: '/jeans/kairo_.png',
+      },
     },
-    colors: ['Black', 'Brown', 'Navy'],
-    sizes: ['S', 'M', 'L', 'XL']
+    colors: ['Negro'],
+    sizes: ['30', '32', '34']
   },
   {
     id: 6,
-    type: 'Camisetas',
-    name: 'Leather Belt',
-    genero: 'Mujer',
-    description: 'High-quality leather belt',
-    price: 40,
-    salePrice: 35,
+    type: 'Jeans',
+    name: 'Jeans confort ',
+    genero: 'Hombre',
+    description: 'Jean verdoso lyon, skinny',
+    price: 79900,
+    salePrice: 70000,
     images: {
-      Black: '/buso.webp',
-      Brown: '/logo_.png',
-      Navy: '/logo.jpg'
+      Azul: {
+        front: '/jeans/lyon.png',
+        back: '/jeans/lyon_.png',
+        
+      },
     },
-    colors: ['Black', 'Brown', 'Navy'],
-    sizes: ['S', 'M', 'L', 'XL']
+    colors: ['Azul'],
+    sizes: ['30', '32', '34']
   },
+  /* Camisetas */
+
   {
     id: 7,
-    type: 'Accesorios',
-    name: 'Canvas Backpack',
-    genero: 'Mujer',
-    description: 'Spacious and sturdy canvas backpack',
-    price: 90,
-    salePrice: 75,
+    type: 'Camisetas',
+    name: 'Camiseta negra',
+    genero: 'Hombre',
+    description: 'Camiseta negra piel durazno, algodon peinado',
+    price: 19900,
+    salePrice: 14900,
     images: {
-      Black: '/watch.webp',
-      Brown: '/logo_.png',
+      Negra: {
+        front: '/camisetas/negro.png',
+        back: '/camisetas/negra_lado.png',
+      },
     },
-    colors: ['Black', 'Brown'],
-    sizes: ['One Size']
+    colors: ['Negra'],
+    sizes: ['S', 'M', 'L'],
+    bg: '#272727'
   },
   {
     id: 8,
-    type: 'Calzado',
-    name: 'Running Shoes',
-    genero: 'Mujer',
-    description: 'Lightweight and comfortable running shoes',
-    price: 70,
-    salePrice: 55,
+    type: 'Camisetas',
+    name: 'Camiseta negra',
+    genero: 'Hombre',
+    description: 'Camiseta negra piel durazno, algodon peinado',
+    price: 19900,
+    salePrice: 14900,
     images: {
-      Black: '/logo_.png',
-      Blue: '/logo_.png',
-      Gray: '/logo_.png',
+      Verde: {
+        front: '/camisetas/verdeFrente.png',
+        back: '/camisetas/verdeLado.png',
+      },
     },
-    colors: ['Black', 'Blue', 'Gray'],
-    sizes: ['7', '8', '9', '10', '11']
+    colors: ['Verde'],
+    sizes: ['S', 'M', 'L'],
+    bg: '#424632'
   },
   {
     id: 9,
-    type: 'Accesorios',
-    name: 'Sports Watch',
-    genero: 'Mujer',
-    description: 'Durable and functional sports watch',
-    price: 150,
-    salePrice: 130,
+    type: 'Camisetas',
+    name: 'Camiseta blanca',
+    genero: 'Hombre',
+    description: 'Camiseta blanca piel durazno, algodon peinado',
+    price: 19900,
+    salePrice: 14900,
     images: {
-      Black: '/logo_.png',
-      Red: '/logo_.png',
-      Blue: '/logo_.png',
+      Blanca: {
+        front: '/camisetas/blanca.png',
+        back: '/camisetas/blanca_lado.png',
+      },
     },
-    colors: ['Black', 'Red', 'Blue'],
-    sizes: ['One Size']
+    colors: ['Blanca'],
+    sizes: ['S', 'M', 'L'],
+    bg: '#FAFBFD'
   },
   {
     id: 10,
-    type: 'Accesorios',
-    name: 'Watch',
+    type: 'Camisetas',
+    name: 'Camiseta amarilla',
     genero: 'Hombre',
-    description: 'Reloj negro con correa de cuero negro',
-    price: 45,
-    salePrice: 35,
+    description: 'Camiseta amarilla piel durazno, algodon peinado',
+    price: 19900,
+    salePrice: 14900,
     images: {
-      Black: '/watch.webp',
-      Brown: '/logo_.png',
+      Amarilla: {
+        front: '/camisetas/amarilla.png',
+        back: '/camisetas/amarilla_lado.png',
+      },
     },
-    colors: ['Black', 'Brown'],
-    sizes: ['One Size']
+    colors: ['Amarilla'],
+    sizes: ['S', 'M', 'L'],
+    bg: '#F6FE80'
   },
   {
     id: 11,
-    type: 'Accesorios',
-    name: 'Baseball Cap',
-    genero: 'Mujer',
-    description: 'Classic baseball cap for everyday wear',
-    price: 20,
-    salePrice: 15,
-    images: {
-      Black: '/watch.webp',
-      Blue: '/logo_.png',
-      Red: '/logo_.png',
-    },
-    colors: ['Black', 'Blue', 'Red'],
-    sizes: ['One Size']
-  },
-  {
-    id: 12,
-    type: 'Accesorios',
-    name: 'Wristband',
-    genero: 'Mujer',
-    description: 'Comfortable and durable wristband',
-    price: 15,
-    salePrice: 10,
-    images: {
-      Black: '/watch.webp',
-      White: '/logo_.png',
-    },
-    colors: ['Black', 'White'],
-    sizes: ['One Size']
-  },
-  {
-    id: 13,
-    type: 'Accesorios',
-    name: 'Winter Gloves',
-    genero: 'Mujer',
-    description: 'Warm and cozy winter gloves',
-    price: 30,
-    salePrice: 25,
-    images: {
-      Black:'/watch.webp',
-      Gray: '/logo_.png',
-    },
-    colors: ['Black', 'Gray'],
-    sizes: ['S', 'M', 'L', 'XL']
-  },
-  {
-    id: 14,
-    type: 'Accesorios',
-    name: 'Leather Wallet',
+    type: 'Camisetas',
+    name: 'Camiseta rosada',
     genero: 'Hombre',
-    description: 'Premium leather wallet with multiple compartments',
-    price: 55,
-    salePrice: 45,
+    description: 'Camiseta rosada piel durazno, algodon peinado',
+    price: 19900,
+    salePrice: 14900,
     images: {
-      Black: '/watch.webp',
-      Brown:'/logo_.png',
+      Amarilla: {
+        front: '/camisetas/rosado.png',
+        back: '/camisetas/rosado_lado.png',
+      },
     },
-    colors: ['Black', 'Brown'],
-    sizes: ['One Size']
+    colors: ['Amarilla'],
+    sizes: ['S', 'M', 'L'],
+    bg: '#Fb6F92'
   },
-  {
-    id: 15,
-    type: 'Accesorios',
-    name: 'Water Bottle',
-    genero: 'Hombre',
-    description: 'Reusable and eco-friendly water bottle',
-    price: 25,
-    salePrice: 20,
-    images: {
-      Blue: '/watch.webp',
-      Green:'/logo_.png',
-      Gray: '/logo_.png',
-    },
-    colors: ['Blue', 'Green', 'Gray'],
-    sizes: ['One Size']
-  },
-  {
-    id: 16,
-    type: 'Accesorios',
-    name: 'Yoga Mat',
-    genero: 'Hombre',
-    description: 'Comfortable and non-slip yoga mat',
-    price: 40,
-    salePrice: 35,
-    images: {
-      Blue: '/watch.webp',
-      Purple: '/logo_.png',
-      Gray: '/logo_.png',
-    },
-    colors: ['Blue', 'Purple', 'Gray'],
-    sizes: ['One Size']
-  },
-  {
-    id: 17,
-    type: 'Accesorios',
-    name: 'Fitness Tracker',
-    genero: 'Hombre',
-    description: 'Advanced fitness tracker with multiple features',
-    price: 100,
-    salePrice: 85,
-    images: {
-      Black: '/watch.webp',
-      Blue: '/logo_.png',
-      Red:'/logo_.png',
-    },
-    colors: ['Black', 'Blue', 'Red'],
-    sizes: ['One Size']
-  },
-  {
-    id: 18,
-    type: 'Accesorios',
-    name: 'Bluetooth Headphones',
-    genero: 'Hombre',
-    description: 'Wireless and high-quality Bluetooth headphones',
-    price: 80,
-    salePrice: 65,
-    images: {
-      Black: '/watch.webp',
-      White: '/logo_.png',
-      Blue: '/logo_.png',
-    },
-    colors: ['Black', 'White', 'Blue'],
-    sizes: ['One Size']
-  },
-  {
-    id: 19,
-    type: 'Accesorios',
-    name: 'Travel Mug',
-    genero: 'Hombre',
-    description: 'Insulated and spill-proof travel mug',
-    price: 30,
-    salePrice: 25,
-    images: {
-      Black: '/watch.webp',
-      Silver: '/logo_.png',
-      Blue: '/logo_.png',
-    },
-    colors: ['Black', 'Silver', 'Blue'],
-    sizes: ['One Size']
-  },
-  {
-    id: 20,
-    type: 'Accesorios',
-    name: 'Portable Charger',
-    genero: 'Hombre',
-    description: 'Compact and powerful portable charger',
-    price: 50,
-    salePrice: 40,
-    images: {
-      Black: '/watch.webp',
-      White: '/logo_.png',
-    },
-    colors: ['Black', 'White'],
-    sizes: ['One Size']
-  }
 ];

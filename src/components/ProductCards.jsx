@@ -8,8 +8,8 @@ export const ProductCards = ({ product, onProductClick, inModal }) => {
   const { SetActiveProduct } = useShopStore();
   
   // Obtén la primera imagen del objeto 'images' del producto
-  const defaultImage = Object.values(product.images)[0];
-
+  const defaultImage = Object.values(product.images)[0].front;
+console.log(defaultImage);
   const handleImageClick = () => {
     SetActiveProduct(product);
     onProductClick(product);
@@ -37,10 +37,9 @@ export const ProductCards = ({ product, onProductClick, inModal }) => {
           <CardMedia
             component="img"
             sx={{ 
-              pt: inModal ? 1 : 2, 
-              pb: inModal ? 1 : 2, 
-              height: '90%', 
-              objectFit: 'contain',
+              pt: inModal ? 0 : 0, 
+              pb: inModal ? 0 : 2, 
+              height: inModal ? 300 : 500, 
               backgroundColor: 'transparent',
               cursor: 'pointer',
               borderRadius: '8px 8px 0 0',

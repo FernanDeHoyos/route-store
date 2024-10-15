@@ -6,3 +6,7 @@ body{
     padding: 0px;
     margin: 0px;
 }
+
+.inner-image-zoom {
+    max-width: none !important;
+  }

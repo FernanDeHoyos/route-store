@@ -9,18 +9,14 @@ const data = [
   {
     id: 1,
     name: 'Hombre',
-    image: '/logo_.png', // Reemplaza con la ruta de tu imagen
+    image: '/hombres.png', // Reemplaza con la ruta de tu imagen
   },
   {
     id: 2,
     name: 'Mujer',
-    image: '/logo_.png', // Reemplaza con la ruta de tu imagen
+    image: '/mujeres.png', // Reemplaza con la ruta de tu imagen
   },
-  {
-    id: 3,
-    name: 'Niños',
-    image: '/logo_.png', // Reemplaza con la ruta de tu imagen
-  },
+ 
 ];
 
 export const Categorys = () => {
@@ -56,8 +52,8 @@ export const Categorys = () => {
             key={category.id}
             xs={12}
             sm={6}
-            md={4}
-            lg={4}
+            md={6}
+            lg={6}
             sx={{ display: 'flex', justifyContent: 'center' }}
           >
             <CardActionArea

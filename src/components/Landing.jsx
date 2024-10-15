@@ -4,17 +4,22 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { centeredFlex } from '../styles/Styles';
 
 const images = [
-  { pcSrc: '/landing.jpg', mobileSrc: '/sueter.png', alt: 'Landing 1' },
-  { pcSrc: '/landing.jpg', mobileSrc: '/sueter.png', alt: 'Landing 2' },
-  { pcSrc: '/landing.jpg', mobileSrc: '/sueter.png', alt: 'Landing 3' },
+  { pcSrc: '/carrusell/bg_c.png', mobileSrc: '/sueter.png', alt: 'Landing 1' },
+  { pcSrc: '/carrusell/bg_m.png', mobileSrc: '/sueter.png', alt: 'Landing 2' },
+  { pcSrc: '/carrusell/bg_relojes.png', mobileSrc: '/sueter.png', alt: 'Landing 3' },
 ];
 
-export const Landing = () => {
+export const Landing = ({newCollectionRef}) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleCategoryClick = () => {
-    window.location.href = '/category';
+    if (newCollectionRef.current) {
+      console.log('Scrolling to collection');
+      newCollectionRef.current.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      console.log('Reference not found');
+    }
   };
 
   return (
@@ -23,7 +28,8 @@ export const Landing = () => {
       sx={{
         width: '100%',
         padding: { xs: 2, sm: 2 },
-        height: { xs: '88vh', sm: '100vh' }, 
+        height: { xs: '88vh', sm: '100vh' },
+        paddingTop: { xs: '56px', sm: '34px' }, // Ajusta el espacio según la altura del navbar
         ...centeredFlex,
       }}
     >
@@ -43,13 +49,15 @@ export const Landing = () => {
             borderRadius={3}
             sx={{
               overflow: 'hidden', 
+              maxWidth: 'none',
+              maxHeight: '90%',
             }}
           >
             <CardMedia
               component="img"
               sx={{
                 objectFit: 'cover',
-                height: '80vh', 
+                height: '90vh', 
                 width: '100%',
                 cursor: 'pointer',
               }}
@@ -64,42 +72,42 @@ export const Landing = () => {
       <Container
         sx={{
           position: 'absolute',
-          bottom: {xs:'20%', sm:'10%'},
+          bottom: { xs: '20%', sm: '10%' },
           left: '50%',
-          pl: {xs: 3},
+          pl: { xs: 3 },
           transform: 'translateX(-50%)',
           zIndex: 1,
           display: 'flex',
-          flexDirection: {xs: 'column', sm:'row'},
+          flexDirection: { xs: 'column', sm: 'row' },
           justifyContent: 'space-between',
           alignItems: 'center',
-          alignContent: 'center'
+          alignContent: 'center',
         }}
       >
         <Grid item>
-        <Typography
-          variant="h3"
-          color="white"
-          sx={{
-            mt: 2,
-            fontFamily: 'Arial, sans-serif',
-            fontWeight: '200',
-          }}
-        >
-          Nueva coleccion
-        </Typography>
-        <Typography
-          variant="h6"
-          color="white"
-          sx={{
-            mt: 2,
-            fontSize: { xs: '1rem', md: '1.5rem' },
-            fontFamily: 'Arial, sans-serif',
-            fontWeight: '200',
-          }}
-        >
-          Descubre nuestra categoría de camisetas
-        </Typography>
+          <Typography
+            variant="h3"
+            color="white"
+            sx={{
+              mt: 2,
+              fontFamily: 'Arial, sans-serif',
+              fontWeight: '200',
+            }}
+          >
+            Nueva coleccion
+          </Typography>
+          <Typography
+            variant="h6"
+            color="white"
+            sx={{
+              mt: 2,
+              fontSize: { xs: '1rem', md: '1.5rem' },
+              fontFamily: 'Arial, sans-serif',
+              fontWeight: '200',
+            }}
+          >
+            Descubre nuestra categoría de ropa para damas y caballeros
+          </Typography>
         </Grid>
         <Button
           sx={{ 
@@ -109,13 +117,15 @@ export const Landing = () => {
             color: 'black', 
             fontSize: '0.75rem',
             fontWeight: '300',
-              '&:hover': {
+            '&:hover': {
               borderColor: '#cccccc',
               background: '#000',
-              color: 'white'}}}
+              color: 'white',
+            }
+          }}
           onClick={handleCategoryClick}
         >
-          Ver Camisetas
+          Ver colleccion
         </Button>
       </Container>
     </Box>

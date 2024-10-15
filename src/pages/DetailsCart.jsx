@@ -68,7 +68,7 @@ export const DetailsCart = () => {
     return (
         <>
             <Grid container spacing={4} sx={{ padding: 4, pt: 15, background: '#fcfeff' }}>
-                <Grid item xs={12} md={8} sx={{ height: 400, minWidth: 300 }}>
+                <Grid item xs={12} md={8} sx={{ height: 300, minWidth: 300 }}>
                     <Typography variant="h4" component="h1" gutterBottom>
                         Carrito
                     </Typography>
