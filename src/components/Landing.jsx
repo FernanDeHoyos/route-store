@@ -4,9 +4,9 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { centeredFlex } from '../styles/Styles';
 
 const images = [
-  { pcSrc: '/carrusell/bg_c.png', mobileSrc: '/sueter.png', alt: 'Landing 1' },
-  { pcSrc: '/carrusell/bg_m.png', mobileSrc: '/sueter.png', alt: 'Landing 2' },
-  { pcSrc: '/carrusell/bg_relojes.png', mobileSrc: '/sueter.png', alt: 'Landing 3' },
+  { pcSrc: '/carrusell/bg_m.png', mobileSrc: '/carrusell/bg_mujeres_m.png', alt: 'Landing 1' },
+  { pcSrc: '/carrusell/bg_hombres.png', mobileSrc: '/carrusell/bg_hombres_m.png', alt: 'Landing 2' },
+  { pcSrc: '/carrusell/bg_relojes.png', mobileSrc: '/carrusell/bg_relojes_m.png', alt: 'Landing 3' },
 ];
 
 export const Landing = ({newCollectionRef}) => {

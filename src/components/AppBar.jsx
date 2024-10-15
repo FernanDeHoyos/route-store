@@ -169,7 +169,7 @@ export const AppbarComponent = () => {
                 <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                   <Box
                     component="img"
-                    src="/logo_.png"
+                    src="/logo.ico"
                     alt="Logo"
                     sx={{ height: { xs: 30, md: 40 }, mr: 2 }}
                   />

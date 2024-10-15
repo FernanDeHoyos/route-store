@@ -1,19 +1,20 @@
 import { useSelector } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { Container, Grid } from '@mui/material';
+import { Container, Grid, Typography } from '@mui/material';
 import { ProductCards } from './ProductCards';
 import { products } from '../data/data';
 import { useEffect, useState } from 'react';
+import { Agotado } from './DetailsComponents/Agotado';
 
 
 export const ContentProducts = ({ inModal }) => {
   const location = useLocation();
-  const {name, type, productId, } = useParams();
+  const { name, type, productId, } = useParams();
   const navigate = useNavigate();
 
   const [activeProducts, SetActiveProducts] = useState([])
   const activeCategory = localStorage.getItem('activeCategory');
-  
+
 
   const filter = (productGenero, productType, showAll = false) => {
     const filteredProducts = products.filter((product) => {
@@ -36,25 +37,25 @@ export const ContentProducts = ({ inModal }) => {
     const productsToShow = showAll ? filteredProducts : filteredProducts.slice(0, 3);
     SetActiveProducts(productsToShow);
   };
-  
 
-    useEffect(() => {
-     if(location.pathname === `/product/${type}/${productId}`){
+  // filtra productos dependiendo de la ruta ya que le componente se usa en diferentes lugares
+  useEffect(() => {
+    if (location.pathname === `/product/${type}/${productId}`) {
       filter(name, type)
-     }else{
+    } else {
       console.log(type);
       filter(name, type, true)
-     }
-    },[type])
+    }
+  }, [type])
 
   const handleProductClick = (product) => {
     navigate(`/product/${product.type}/${product.id}`);
   };
 
   return (
-    <Container sx={{ background: 'transparent',  }}>
+    <Container sx={{ background: 'transparent', }}>
       <Grid container spacing={4}>
-        {activeProducts.map((product) => (
+        {activeProducts?.length > 0 && activeProducts.map((product) => (
           <Grid
             item
             key={product.id}
@@ -71,6 +72,10 @@ export const ContentProducts = ({ inModal }) => {
             />
           </Grid>
         ))}
+
+        {!activeProducts?.length && (
+          <Agotado/>
+        )}
       </Grid>
     </Container>
   );
