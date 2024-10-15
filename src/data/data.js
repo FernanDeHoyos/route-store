@@ -38,7 +38,7 @@ export const products = [
       },
     },
     imageIco: {
-      Negro: {
+      Azul: {
         front: '/jeans/icon/berlin_50x50_1.webp',
         back: '/jeans/icon/berlin_50x50_2.webp',
       },
@@ -61,7 +61,7 @@ export const products = [
       },
     },
     imageIco: {
-      Negro: {
+      Azul: {
         front: '/jeans/icon/boston_50x50_1.webp',
         back: '/jeans/icon/boston_50x50_2.webp',
       },
@@ -84,7 +84,7 @@ export const products = [
       },
     },
     imageIco: {
-      Negro: {
+      Azul: {
         front: '/jeans/icon/dubai_50x50_1.webp',
         back: '/jeans/icon/dubai_50x50_2.webp',
       },
@@ -131,7 +131,7 @@ export const products = [
       },
     },
     imageIco: {
-      Negro: {
+      Azul: {
         front: '/jeans/icon/lyon_50x50_1.webp',
         back: '/jeans/icon/lyon_50x50_2.webp',
       },
@@ -155,6 +155,12 @@ export const products = [
         back: '/camisetas/negra_lado.png',
       },
     },
+    imageIco: {
+      Negra: {
+        front: '/camisetas/icons/negro.png',
+        back: '/camisetas/icons/negra_lado.png',
+      },
+    },
     colors: ['Negra'],
     sizes: ['S', 'M', 'L'],
     bg: '#272727'
@@ -171,6 +177,12 @@ export const products = [
       Verde: {
         front: '/camisetas/verdeFrente.png',
         back: '/camisetas/verdeLado.png',
+      },
+    },
+    imageIco: {
+      Verde: {
+        front: '/camisetas/icons/verdeFrente.webp',
+        back: '/camisetas/icons/verdeLado.webp',
       },
     },
     colors: ['Verde'],
@@ -191,6 +203,12 @@ export const products = [
         back: '/camisetas/blanca_lado.png',
       },
     },
+    imageIco: {
+      Blanca: {
+        front: '/camisetas/icons/blanca.webp',
+        back: '/camisetas/icons/blanca_lado.webp',
+      },
+    },
     colors: ['Blanca'],
     sizes: ['S', 'M', 'L'],
     bg: '#FAFBFD'
@@ -209,6 +227,12 @@ export const products = [
         back: '/camisetas/amarilla_lado.png',
       },
     },
+    imageIco: {
+      Amarilla: {
+        front: '/camisetas/icons/amarilla.webp',
+        back: '/camisetas/icons/amarilla_lado.webp',
+      },
+    },
     colors: ['Amarilla'],
     sizes: ['S', 'M', 'L'],
     bg: '#F6FE80'
@@ -222,12 +246,18 @@ export const products = [
     price: 19900,
     salePrice: 14900,
     images: {
-      Amarilla: {
+      Rosada: {
         front: '/camisetas/rosado.png',
         back: '/camisetas/rosado_lado.png',
       },
     },
-    colors: ['Amarilla'],
+    imageIco: {
+      Rosada: {
+        front: '/camisetas/icons/rosado.webp',
+        back: '/camisetas/icons/rosado_lado.webp',
+      },
+    },
+    colors: ['Rosada'],
     sizes: ['S', 'M', 'L'],
     bg: '#Fb6F92'
   },
