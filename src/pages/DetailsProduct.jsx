@@ -58,7 +58,6 @@ useEffect(() => {
         setBg(activeProduct?.bg)
       }
       const imageForSelectedColor = selectedColor && activeProduct.images[selectedColor];
-      const imageIco = selectedColor && activeProduct.imageIco[selectedColor];
       
       if (imageForSelectedColor) {
         // Si existe una imagen para el color seleccionado, la usa.
@@ -83,7 +82,7 @@ useEffect(() => {
         setTamaño(true)
       }
       setDisplayedImage(activeProduct?.image)
-      setChallengImage(activeProduct?.imageIco)
+      setChallengImage(activeProduct?.image)
       setSelectedColor(activeProduct?.selectedColor)
       setSelectedSize(activeProduct?.selectedSize)
       setSelectedSize(false)
@@ -121,8 +120,8 @@ useEffect(() => {
       id: activeProduct?.id,
       name: activeProduct?.name,
       type: activeProduct?.type,
-      price: activeProduct?.price,
-      image: activeProduct.imageIco[selectedColor].front,
+      price: activeProduct?.salePrice,
+      image: activeProduct.images[selectedColor].front,
       quantity: 1,
       selectedColor,
       selectedSize,
@@ -332,7 +331,7 @@ useEffect(() => {
               </div>
               <Divider sx={{ pt: 3 }} />
               <Typography variant="h4" sx={{ marginTop: 4, fontWeight: '300', ...centeredFlex, justifyContent: 'space-between' }}>
-                <span>$</span> <span>{activeProduct.price}</span>
+                <span>$</span> <span>{activeProduct.salePrice}</span>
               </Typography>
               <Button
                 variant="contained"
