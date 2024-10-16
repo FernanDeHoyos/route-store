@@ -25,30 +25,34 @@ export const DetailsCart = () => {
         setCartItems(productsFromStorage); // Inicializar cartItems con los productos almacenados
     }, []);
 
-    console.log(storedProduct);
 
+    //
     const handleQuantityChange = (id, color, size, newQuantity = 1) => {
         const updatedProducts = storedProduct.map(item =>
             item.id === id && item.selectedColor === color && item.selectedSize == size ? { ...item, quantity: parseInt(newQuantity, 10) || 0 } : item
         );
         setStoredProduct(updatedProducts); // Actualizar los productos en el estado
         setCartItems(updatedProducts);
-        console.log(updatedProducts);
         localStorage.setItem('productsCart', JSON.stringify(updatedProducts));
         const ad = cartItems.filter(product => product.id === id);
-        console.log(ad);
     };
 
-    const removeFromCart = (id, size, color) => {
-        const storedProducts = JSON.parse(localStorage.getItem('productsCart')) || [];
-        const updatedProducts = storedProducts.filter(product => product.id !== id
-            || product.selectedSize !== size
-            || product.selectedColor !== color);
-        console.log(updatedProducts);
-        localStorage.setItem('productsCart', JSON.stringify(updatedProducts));
-        setStoredProduct(updatedProducts);
-        SetRemoveFromCart(updatedProducts)
-    };
+    //funcion para eliminar un producto del carrito
+    // Update the removeFromCart function
+const removeFromCart = (id, size, color) => {
+    const storedProducts = JSON.parse(localStorage.getItem('productsCart')) || [];
+    const updatedProducts = storedProducts.filter(
+        (product) =>
+            product.id !== id ||
+            product.selectedSize !== size ||
+            product.selectedColor !== color
+    );
+    localStorage.setItem('productsCart', JSON.stringify(updatedProducts));
+    setStoredProduct(updatedProducts);
+    setCartItems(updatedProducts); // Update cartItems here to trigger a re-render
+    SetRemoveFromCart(updatedProducts);
+};
+
 
 
     const handleShop = () => {
@@ -78,6 +82,7 @@ export const DetailsCart = () => {
                             overflowX: 'hidden', //1
                             width: '100%',
                             height: '100%',
+                            overflowX: 'auto',
                             overflowY: 'auto',
                             scrollbarWidth: 'none',
                             '&::-webkit-scrollbar': { display: 'none' },
@@ -122,9 +127,8 @@ export const DetailsCart = () => {
                                                         elevation={0}
                                                         sx={{
                                                             ...centeredFlex,
-                                                            padding: 1,
                                                             height: '100%',
-                                                            width: { xs: 30, sm: 100, md: 100 },
+                                                            width: { xs: 60, sm: 100, md: 100 },
                                                             flexDirection: 'column',
                                                             border: '0.5px solid #cccccc',
                                                             borderRadius: 2.5,
@@ -208,8 +212,8 @@ export const DetailsCart = () => {
                         </Table>
                     </TableContainer>
                 </Grid>
-                <Grid item xs={12} md={4}>
-                    <Card elevation={0} sx={{ padding: 2 }}>
+                <Grid item xs={12} md={4} sx={{pt:5}}>
+                    <Card elevation={0} sx={{ padding: 2, pt:5 }}>
                         <Typography variant="h5" gutterBottom>
                             Sobre su compra
                         </Typography>

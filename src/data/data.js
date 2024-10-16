@@ -15,8 +15,8 @@ export const products = [
     },
     imageIco: {
       Negro: {
-        front: '/jeans/icon/milan_50x50_1.webp',
-        back: '/jeans/icon/milan_50x50_2.webp',
+        front: '/jeans/icons/milan.webp',
+        back: '/jeans/icons/milan_.webp',
       },
     },
     colors: ['Negro'],
@@ -39,8 +39,8 @@ export const products = [
     },
     imageIco: {
       Azul: {
-        front: '/jeans/icon/berlin_50x50_1.webp',
-        back: '/jeans/icon/berlin_50x50_2.webp',
+        front: '/jeans/icons/berlin_50x50_1.webp',
+        back: '/jeans/icons/berlin_50x50_2.webp',
       },
     },
     colors: ['Azul'],
@@ -62,8 +62,8 @@ export const products = [
     },
     imageIco: {
       Azul: {
-        front: '/jeans/icon/boston_50x50_1.webp',
-        back: '/jeans/icon/boston_50x50_2.webp',
+        front: '/jeans/icons/boston_50x50_1.webp',
+        back: '/jeans/icons/boston_50x50_2.webp',
       },
     },
     colors: ['Azul'],
@@ -85,8 +85,8 @@ export const products = [
     },
     imageIco: {
       Azul: {
-        front: '/jeans/icon/dubai_50x50_1.webp',
-        back: '/jeans/icon/dubai_50x50_2.webp',
+        front: '/jeans/icons/dubai_50x50_1.webp',
+        back: '/jeans/icons/dubai_50x50_2.webp',
       },
     },
     colors: ['Azul'],
@@ -108,8 +108,8 @@ export const products = [
     },
     imageIco: {
       Negro: {
-        front: '/jeans/icon/kairo_50x50_2.webp',
-        back: '/jeans/icon/kairo_50x50_1.webp',
+        front: '/jeans/icons/kairo_50x50_2.webp',
+        back: '/jeans/icons/kairo_50x50_1.webp',
       },
     },
     colors: ['Negro'],
@@ -132,8 +132,8 @@ export const products = [
     },
     imageIco: {
       Azul: {
-        front: '/jeans/icon/lyon_50x50_1.webp',
-        back: '/jeans/icon/lyon_50x50_2.webp',
+        front: '/jeans/icons/lyon_50x50_1.webp',
+        back: '/jeans/icons/lyon_50x50_2.webp',
       },
     },
     colors: ['Azul'],

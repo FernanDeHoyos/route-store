@@ -61,7 +61,6 @@ export const ModalCart = ({anchorEl, handleClose, handleOpen, product}) => {
                                                     elevation={0}
                                                     sx={{
                                                         ...centeredFlex,
-                                                        height: '100%',
                                                         width: {xs: 50, md: 100},
                                                         flexDirection: 'column',
                                                         border: '0.5px solid #cccccc',
@@ -75,8 +74,8 @@ export const ModalCart = ({anchorEl, handleClose, handleOpen, product}) => {
                                                         image={product.image}
                                                         alt={'item.name'}
                                                         sx={{
-                                                            height: '80%',
-                                                            width: '80%',
+                                                            height: '100%',
+                                                            width: '100%',
                                                             objectFit: 'contain',
                                                         }}
                                                     />

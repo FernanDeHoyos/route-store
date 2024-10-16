@@ -30,6 +30,7 @@ export const DatesShoping = () => {
     const [openDialog, setOpenDialog] = useState(false);
     const [openDia, setOpenDia] = useState(false);
     const [checking, setChecking] = useState(false);
+    const [message, setMessage] = useState('');
 
 
     useEffect(() => {
@@ -44,6 +45,7 @@ export const DatesShoping = () => {
         console.log(total);
     }, [storedProduct]);
 
+    // funcion verificar campos no vacios del formulario
     const validateForm = () => {
         const newErrors = {};
         Object.keys(formState).forEach(key => {
@@ -52,12 +54,15 @@ export const DatesShoping = () => {
             }
         });
         setErrors(newErrors);
+        if(!(Object.keys(newErrors).length === 0)){
+            setMessage('Debe llenar todos los campos.')
+        }
         return Object.keys(newErrors).length === 0;
     };
 
+    //verificar productos en carrito y formulario completo
     const handleOpenDialog = () => {
         if (!validateForm() || storedProduct.length <= 0) {
-            console.log(storedProduct, 'Formulario no válido');
             setOpenDia(true)
             return
         }
@@ -71,29 +76,35 @@ export const DatesShoping = () => {
 
     const sendWhatsAppMessage = (array) => {
         const { Nombre, Apellido, Celular, Direccion, Ciudad, CodigoPostal, Especificaciones_envio } = array[0];
-        const products = array[1].map(product =>
-            `${product.name} (Color: ${product.selectedColor}, Talla: ${product.selectedSize}, Cantidad: ${product.quantity})`
+        const products = array[1].map(product => 
+            `ID: ${product.id}\n` +
+            `Nombre: ${product.name}\n` +
+            `Color: ${product.selectedColor}\n` +
+            `Talla: ${product.selectedSize}\n` +
+            `Cantidad: ${product.quantity}\n` +
+            `Precio: $${product.price}\n` +
+            `Imagen: ${window.location.origin}${product.image}\n`
         ).join('\n');
-
+    
+        const totalPrice = array[1].reduce((acc, product) => acc + product.price * product.quantity, 0).toFixed(2);
+    
         const message = `Nueva Compra:\n\nInformación del Cliente:\nNombre: ${Nombre} ${Apellido}\nTeléfono: ${Celular}\nDirección: ${Direccion}, ${Ciudad}\nCódigo Postal: ${CodigoPostal}\nEspecificaciones: ${Especificaciones_envio}\n\nProductos:\n${products}\n\nPrecio Total: $${totalPrice}`;
         const encodedMessage = encodeURIComponent(message);
         const phoneNumber = '3136601690'; // Reemplazar con el número de teléfono del destinatario
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-
+    
         window.open(whatsappUrl, '_blank');
     };
+    
 
 
     const handleConfirmPurchase = async () => {
         const array = [formState, storedProduct];
-        console.log(array);
         handleCloseDialog();
         sendWhatsAppMessage(array)
-        console.log('cargando...');
         setChecking(true)
         await onSaveShopping(array);
         setChecking(false)
-        console.log('termino...');
     };
 
     const handleCloseDia = () => {
@@ -170,7 +181,7 @@ export const DatesShoping = () => {
                         </Typography>
                         {storedProduct.map((produc) => (
                             <Typography variant="body2" key={produc.id + produc.selectedColor + produc.selectedSize} sx={{ fontWeight: 'bold' }}>
-                                {produc.name} x {produc.quantity} <span style={{ float: 'right' }}>${produc.price * produc.quantity}</span>
+                                {produc.name} x {produc.quantity} talla {produc.selectedSize} <span style={{ float: 'right' }}>${produc.price * produc.quantity}</span>
                             </Typography>
                         ))}
 
@@ -231,7 +242,7 @@ export const DatesShoping = () => {
                                                                 image={item.image}
                                                                 alt={item.image}
                                                                 sx={{
-                                                                    height: '80%',
+                                                                    height: '100%',
                                                                     width: '80%',
                                                                     objectFit: 'contain',
                                                                 }}
@@ -270,8 +281,8 @@ export const DatesShoping = () => {
             <AlertG
                 open={openDia}
                 handleClose={handleCloseDia}
-                title={'Carrito vacio'}
-                body={'No hay ningun producto en el carrito para hacer su compra'}
+                title={'Compra no en orden'}
+                body={message}
             />
         </>
     );

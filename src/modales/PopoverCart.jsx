@@ -119,9 +119,6 @@ export const PopoverCart = ({ open, anchorEl, handlePopoverClose }) => {
                                         <CardMedia
                                             component="img"
                                             sx={{
-                                                pt: 1,
-                                                pb: 1,
-                                                height: '90%',
                                                 objectFit: 'contain',
                                                 backgroundColor: 'transparent',
                                                 cursor: 'pointer',

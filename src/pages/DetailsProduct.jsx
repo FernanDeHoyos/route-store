@@ -17,6 +17,7 @@ import '../App.css';
 
 
 export const DetailsProduct = () => {
+
   const location = useLocation();
 
   const { activeProduct } = useSelector((state) => state.shop);
@@ -45,12 +46,11 @@ export const DetailsProduct = () => {
     }
   }, [productId]);
 
-  console.log(displayedImage);
 
  // Cambiar la imagen según el color seleccionado
 useEffect(() => {
   if (location.pathname === `/product/${type}/${productId}`) {
-    
+    window.scrollTo(0, 0);
     setIsDisabled(true);
     if (activeProduct) {
       if(type === 'Camisetas'){
@@ -58,18 +58,18 @@ useEffect(() => {
         setBg(activeProduct?.bg)
       }
       const imageForSelectedColor = selectedColor && activeProduct.images[selectedColor];
+      const imageIco = selectedColor && activeProduct.imageIco[selectedColor];
       
       if (imageForSelectedColor) {
         // Si existe una imagen para el color seleccionado, la usa.
         setDisplayedImage(imageForSelectedColor.front);
-        setChallengImage(imageForSelectedColor);
-        console.log(imageForSelectedColor.front);
+        setChallengImage(imageIco);
       } else {
         // Si no hay color seleccionado o la clave no es válida, muestra la primera imagen disponible.
         const defaultImage = Object.values(activeProduct.images)[0];
+        const imagesIco = Object.values(activeProduct.images)[0];
         setDisplayedImage(defaultImage.front);
-        setChallengImage(defaultImage);
-        console.log(defaultImage.front);
+        setChallengImage(imagesIco); 
       }
     }
   }
@@ -79,6 +79,9 @@ useEffect(() => {
   //hacer cambio de variables segun el path o ruta
   useEffect(() => {
     if (location.pathname === `/cart/product/${type}/${productId}`) {
+      if(type === 'Camisetas'){
+        setTamaño(true)
+      }
       setDisplayedImage(activeProduct?.image)
       setChallengImage(activeProduct?.imageIco)
       setSelectedColor(activeProduct?.selectedColor)
@@ -97,7 +100,6 @@ useEffect(() => {
 
   const handleOpen = (event) => {
     setAnchorEl(event.currentTarget);
-    console.log('popover');
   };
 
   const handleClose = () => {
@@ -110,18 +112,17 @@ useEffect(() => {
 
   const handleSizeClick = (size) => {
     setSelectedSize(size);
-    console.log(size);
   };
 
   //funcion para agregar un producto al carrito
   const handleAddCart = (event) => {
     const productsFromStorage = JSON.parse(localStorage.getItem('productsCart')) || [];
     const productDetails = {
-      id: activeProduct.id,
-      name: activeProduct.name,
-      type: activeProduct.type,
-      price: activeProduct.price,
-      image: displayedImage,
+      id: activeProduct?.id,
+      name: activeProduct?.name,
+      type: activeProduct?.type,
+      price: activeProduct?.price,
+      image: activeProduct.imageIco[selectedColor].front,
       quantity: 1,
       selectedColor,
       selectedSize,
@@ -146,7 +147,6 @@ useEffect(() => {
       return
     }
     setIsAlert(true);
-    console.log('Product already in cart');
   };
 
   const handleImageClick = (imageType) => {
@@ -193,16 +193,21 @@ useEffect(() => {
             >
               <Grid item sx={{ maxWidth: 'none' }}>
                 <InnerImageZoom
-                  src={displayedImage}
-                  zoomSrc={displayedImage}
-                  zoomScale={2}
-                  alt={activeProduct.name}
-                  width={tamaño ? 700 : 580}
-                  height={600}
-                  zoomType="click"
-                  fadeDuration={150}
-                  hideHint={true}
-                  className="inner-image-zoom"
+                 src={displayedImage}
+                 zoomSrc={displayedImage}
+                 alt={activeProduct.name}
+                 width={tamaño ? 700 : 580}
+                 height={600}
+                 zoomType="click" // Zoom mediante clic o toque
+                 zoomScale={1} // Ajuste del nivel de zoom
+                 zoomPreload={true} // Pre-carga la imagen de zoom para evitar retrasos
+                 //fullscreenOnMobile={true} // Activa pantalla completa en móviles
+                 mobileBreakpoint={640} // Define el breakpoint máximo para móviles
+                 hideCloseButton={true} // Oculta el botón de cierre en modo fullscreen
+                 fadeDuration={150}
+                 hideHint={true} // Oculta el ícono de lupa
+                 className="inner-image-zoom"
+                 
                 />
               </Grid>
 
