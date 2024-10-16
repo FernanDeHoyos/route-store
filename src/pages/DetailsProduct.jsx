@@ -63,7 +63,7 @@ useEffect(() => {
       if (imageForSelectedColor) {
         // Si existe una imagen para el color seleccionado, la usa.
         setDisplayedImage(imageForSelectedColor.front);
-        setChallengImage(imageIco);
+        setChallengImage(imageForSelectedColor);
       } else {
         // Si no hay color seleccionado o la clave no es válida, muestra la primera imagen disponible.
         const defaultImage = Object.values(activeProduct.images)[0];
