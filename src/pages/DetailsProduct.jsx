@@ -121,7 +121,7 @@ useEffect(() => {
       name: activeProduct?.name,
       type: activeProduct?.type,
       price: activeProduct?.salePrice,
-      image: activeProduct.images[selectedColor].front,
+      image: activeProduct?.images[selectedColor].front,
       quantity: 1,
       selectedColor,
       selectedSize,
@@ -311,7 +311,7 @@ useEffect(() => {
                       },
                     }}
                   >
-                    {size}
+                    { size }
                   </Button>
                 ))) : <Typography variant="p"
                   sx={{

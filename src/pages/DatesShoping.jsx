@@ -186,7 +186,7 @@ export const DatesShoping = () => {
 
                         <Divider sx={{ my: 2 }} />
                         <Typography variant="h6">
-                            Total <span style={{ float: 'right' }}>${totalPrice}</span>
+                            Total <span style={{ float: 'right' }}>$ {totalPrice}</span>
                         </Typography>
                         <Divider sx={{ my: 2 }} />
                         <Button
