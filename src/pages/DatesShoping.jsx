@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Grid, Typography, Button, Card, Divider, IconButton, MenuItem, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, CardMedia, TextField } from '@mui/material';
+import { Grid, Typography, Button, Card, Divider, IconButton, MenuItem, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, CardMedia, TextField, Box } from '@mui/material';
 import { centeredFlex } from '../styles/Styles';
 import Footer from '../components/Footer';
 import { useForm } from '../hooks/useForm';
@@ -20,7 +20,6 @@ export const DatesShoping = () => {
         Celular: '',
         Direccion: '',
         Ciudad: '',
-        CodigoPostal: '',
         Especificaciones_envio: ''
     });
 
@@ -54,7 +53,7 @@ export const DatesShoping = () => {
             }
         });
         setErrors(newErrors);
-        if(!(Object.keys(newErrors).length === 0)){
+        if (!(Object.keys(newErrors).length === 0)) {
             setMessage('Debe llenar todos los campos.')
         }
         return Object.keys(newErrors).length === 0;
@@ -75,8 +74,8 @@ export const DatesShoping = () => {
     };
 
     const sendWhatsAppMessage = (array) => {
-        const { Nombre, Apellido, Celular, Direccion, Ciudad, CodigoPostal, Especificaciones_envio } = array[0];
-        const products = array[1].map(product => 
+        const { Nombre, Apellido, Celular, Direccion, Ciudad, Especificaciones_envio } = array[0];
+        const products = array[1].map(product =>
             `ID: ${product.id}\n` +
             `Nombre: ${product.name}\n` +
             `Color: ${product.selectedColor}\n` +
@@ -85,17 +84,17 @@ export const DatesShoping = () => {
             `Precio: $${product.price}\n` +
             `Imagen: ${window.location.origin}${product.image}\n`
         ).join('\n');
-    
+
         const totalPrice = array[1].reduce((acc, product) => acc + product.price * product.quantity, 0).toFixed(2);
-    
-        const message = `Nueva Compra:\n\nInformación del Cliente:\nNombre: ${Nombre} ${Apellido}\nTeléfono: ${Celular}\nDirección: ${Direccion}, ${Ciudad}\nCódigo Postal: ${CodigoPostal}\nEspecificaciones: ${Especificaciones_envio}\n\nProductos:\n${products}\n\nPrecio Total: $${totalPrice}`;
+
+        const message = `SOMOS ROUTE 66 STORE\n\nsobre su compra:\n\nInformación del Cliente:\nNombre: ${Nombre} ${Apellido}\nTeléfono: ${Celular}\nDirección: ${Direccion}, ${Ciudad}\nEspecificaciones: ${Especificaciones_envio}\n\nProductos:\n${products}\n\nPrecio Total: $${totalPrice}`;
         const encodedMessage = encodeURIComponent(message);
         const phoneNumber = '3136601690'; // Reemplazar con el número de teléfono del destinatario
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-    
+
         window.open(whatsappUrl, '_blank');
     };
-    
+
 
 
     const handleConfirmPurchase = async () => {
@@ -160,7 +159,7 @@ export const DatesShoping = () => {
                                         '&:hover': {
 
                                         }
-                              
+
                                     }}
                                 />
                             );

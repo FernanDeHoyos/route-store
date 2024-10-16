@@ -50,7 +50,7 @@ export const Landing = ({newCollectionRef}) => {
             sx={{
               overflow: 'hidden', 
               maxWidth: 'none',
-              maxHeight: '90%',
+              maxHeight: '100%',
             }}
           >
             <CardMedia

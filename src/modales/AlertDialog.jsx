@@ -1,4 +1,5 @@
 import {Typography, Button, Dialog, DialogActions, DialogContent, DialogTitle} from '@mui/material';
+import { WhatsappMessage } from '../components/DetailsComponents/WhatsappMessage';
 
 
 export const AlertDialog = ({ open, handleClose, handleConfirm, phone, address, specifications }) => {
@@ -14,7 +15,7 @@ export const AlertDialog = ({ open, handleClose, handleConfirm, phone, address, 
       </DialogTitle>
       <DialogContent sx={{ background: '#dbeeff' }}>
         <Typography id="alert-dialog-description">
-          Por favor si esta seguro de estos datos pulse en confirmar, recuerde que sucompra se enviara a la direccion sugerida:
+          Por favor si esta seguro de estos datos precione en confirmar, recuerde que su compra se enviara a la direccion sugerida:
         </Typography>
         <Typography variant="body2" sx={{ pb: 2, mt: 3, fontWeight: 'bold' }}>
           Celular: <span style={{ float: 'right' }}>{phone}</span>
@@ -76,6 +77,7 @@ export const AlertDialog = ({ open, handleClose, handleConfirm, phone, address, 
           Confirmar
         </Button>
       </DialogActions>
+      <WhatsappMessage/>
     </Dialog>
   );
 };
